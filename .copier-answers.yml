@@ -1,0 +1,17 @@
+# Changes here will be overwritten by Copier
+_commit: v0.11.4
+_src_path: https://github.com/fohte/generic-boilerplate
+auto_merge_release_pr: false
+description: '@fohte''s design system'
+error_tracking: false
+is_public: true
+is_web_app: false
+project_name: ui
+release_type: node
+repo_id: '1384951968'
+repo_language: en
+storybook: false
+subpackages: []
+type: node
+use_release_please: true
+vrt: true
