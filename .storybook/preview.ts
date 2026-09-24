@@ -1,3 +1,5 @@
+import '@fohte/ui/tokens.css'
+
 import {
   afterEach,
   beforeEach,
