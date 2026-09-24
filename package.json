@@ -73,5 +73,6 @@
     "storybook": "10.6.0",
     "typescript": "6.0.3",
     "vitest": "4.1.11"
-  }
+  },
+  "version": "0.1.0"
 }
