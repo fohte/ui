@@ -1,4 +1,42 @@
+@custom-variant dark (&:is(.dark *));
+
 :root {
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #f0f0f0;
+  --card-foreground: #0a0a0a;
+  --popover: #f0f0f0;
+  --popover-foreground: #0a0a0a;
+  --primary: #dc2626;
+  --primary-foreground: #fafafa;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f0f0f0;
+  --muted-foreground: #52525b;
+  --accent: #e5e5e5;
+  --accent-foreground: #0a0a0a;
+  --destructive: #dc2626;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #dc2626;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #dc2626;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f0f0f0;
+  --sidebar-accent-foreground: #0a0a0a;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #dc2626;
+  --border-strong: #a1a1aa;
+  --surface-strong: #e5e5e5;
+  --muted-foreground-strong: #3f3f46;
+  --muted-foreground-faint: #71717a;
+  --muted-foreground-ghost: #a1a1aa;
+  --radius: 0rem;
+  --keycap-radius: 4px;
+}
+
+.dark {
   --background: #0a0a0a;
   --foreground: #fafafa;
   --card: #141414;
