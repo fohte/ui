@@ -1,8 +1,24 @@
 {
-  "name": "ui",
-  "private": true,
+  "name": "@fohte/ui",
+  "description": "Shared design tokens for fohte applications",
+  "license": "MIT",
+  "author": "Hayato Kawai <fohte.hk@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fohte/ui.git"
+  },
   "packageManager": "pnpm@12.4.2",
   "type": "module",
+  "exports": {
+    "./tokens.css": "./tokens.css"
+  },
+  "files": [
+    "tokens.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "imports": {
     "#*": {
       "types": [
@@ -25,12 +41,10 @@
     "storybook:build": "storybook build",
     "storybook:screenshot": "vitest run --config vitest.screenshot.config.ts"
   },
-  "dependencies": {
+  "devDependencies": {
     "neverthrow": "8.2.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
-  },
-  "devDependencies": {
+    "react-dom": "19.2.8",
     "@commitlint/cli": "21.2.2",
     "@fohte/eslint-config": "0.5.0",
     "@fohte/storybook-addon": "0.1.9",
