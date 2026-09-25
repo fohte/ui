@@ -1,6 +1,6 @@
 {
   "name": "@fohte/ui",
-  "description": "Shared design system components and tokens for fohte applications",
+  "description": "Shared design tokens and React components for fohte applications.",
   "license": "MIT",
   "author": "Hayato Kawai <fohte.hk@gmail.com>",
   "repository": {
@@ -31,6 +31,14 @@
     "registry": "https://registry.npmjs.org/"
   },
   "imports": {
+    "#utils": {
+      "types": "./src/utils.ts",
+      "default": "./src/utils.ts"
+    },
+    "#components/*": {
+      "types": "./src/components/*.tsx",
+      "default": "./src/components/*.tsx"
+    },
     "#*": {
       "types": [
         "./src/*.tsx",

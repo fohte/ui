@@ -39,6 +39,26 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 
 React 19 and React DOM 19 are peer dependencies. The component subpaths publish TSX source, so the consuming bundler must transform TSX from dependencies.
 
+The components also require Tailwind CSS v4, `tw-animate-css`, and `shadcn` in the consuming application. Install them as development dependencies if they are not already present:
+
+```sh
+pnpm add -D tailwindcss@^4 tw-animate-css@^1 shadcn@^4
+```
+
+For example, a select can be composed from its trigger, value, content, and items:
+
+```tsx
+<Select defaultValue="first">
+  <SelectTrigger aria-label="Choose an option">
+    <SelectValue placeholder="Choose an option" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="first">First option</SelectItem>
+    <SelectItem value="second">Second option</SelectItem>
+  </SelectContent>
+</Select>
+```
+
 The consuming application's CSS must load Tailwind CSS v4, `tw-animate-css`, `shadcn/tailwind.css`, and this package's tokens. Tailwind v4 ignores dependency files by default, so explicitly register the package source using [`@source`](https://tailwindcss.com/docs/detecting-classes-in-source-files). Adjust the path relative to the stylesheet:
 
 ```css
