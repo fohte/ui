@@ -32,6 +32,20 @@ const colorTokens = [
   'muted-foreground-strong',
   'muted-foreground-faint',
   'muted-foreground-ghost',
+  'tint-red',
+  'tint-red-foreground',
+  'tint-orange',
+  'tint-orange-foreground',
+  'tint-yellow',
+  'tint-yellow-foreground',
+  'tint-green',
+  'tint-green-foreground',
+  'tint-cyan',
+  'tint-cyan-foreground',
+  'tint-blue',
+  'tint-blue-foreground',
+  'tint-magenta',
+  'tint-magenta-foreground',
 ] as const
 
 const TokenSwatches = () => (
