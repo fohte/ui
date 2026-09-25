@@ -37,7 +37,9 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 ```
 
-React 19 and React DOM 19 are peer dependencies. The component subpaths publish TSX source, so the consuming bundler must transform TSX from dependencies.
+React, React DOM, `@base-ui/react`, and `lucide-react` are peer dependencies. Make sure they are available in the consuming application. Their supported version ranges are declared in `package.json`.
+
+The component subpaths publish TSX source, so the consuming bundler must transform TSX from dependencies.
 
 The components also require Tailwind CSS v4, `tw-animate-css`, and `shadcn` in the consuming application. Install them as development dependencies if they are not already present:
 
