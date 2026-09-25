@@ -16,6 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Open: Story = {
+  name: 'a centered popup appears above the dialog backdrop',
   render: () => (
     <Dialog open>
       <DialogPortal>
@@ -28,4 +29,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = inDarkMode(Open)
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the centered popup and backdrop use dark colors',
+)

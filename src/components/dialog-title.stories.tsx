@@ -16,6 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'the dialog title appears at the top of the content area',
   render: () => (
     <Dialog open>
       <DialogContent>
@@ -27,4 +28,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the dialog title uses the dark theme',
+)

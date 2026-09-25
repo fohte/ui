@@ -12,6 +12,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'the heading and close control sit in a bordered header bar',
   render: () => (
     <DialogHeaderBar className="w-96">
       <span>Dialog heading</span>
@@ -22,4 +23,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the header bar uses dark colors behind its heading and close control',
+)

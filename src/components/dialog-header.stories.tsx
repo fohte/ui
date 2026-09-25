@@ -16,6 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'the dialog header groups a title and supporting text vertically',
   render: () => (
     <Dialog open>
       <DialogContent>
@@ -28,4 +29,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the dialog header groups a title and supporting text in dark mode',
+)

@@ -17,9 +17,12 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  name: 'a button uses the default variant and size.',
+}
 
 export const Variants: Story = {
+  name: 'buttons display each available visual variant side by side.',
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Button>Default</Button>
@@ -33,6 +36,7 @@ export const Variants: Story = {
 }
 
 export const Sizes: Story = {
+  name: 'buttons display text and icon controls at each supported size.',
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Button size="xs">Extra small</Button>
@@ -56,13 +60,26 @@ export const Sizes: Story = {
 }
 
 export const Disabled: Story = {
+  name: 'the button displays its disabled appearance.',
   args: { children: 'Disabled', disabled: true },
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the default button uses dark theme colors.',
+)
 
-export const VariantsDark: Story = inDarkMode(Variants)
+export const VariantsDark: Story = inDarkMode(
+  Variants,
+  'button variants appear with dark theme colors.',
+)
 
-export const SizesDark: Story = inDarkMode(Sizes)
+export const SizesDark: Story = inDarkMode(
+  Sizes,
+  'button sizes appear with dark theme colors.',
+)
 
-export const DisabledDark: Story = inDarkMode(Disabled)
+export const DisabledDark: Story = inDarkMode(
+  Disabled,
+  'the disabled button appears with dark theme colors.',
+)
