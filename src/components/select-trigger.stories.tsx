@@ -21,7 +21,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'shows a closed select trigger with its placeholder in dark mode.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'shows a closed select trigger with its placeholder in dark mode.',
+)

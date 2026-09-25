@@ -21,7 +21,7 @@ export const Placeholder: Story = {
   ),
 }
 
-export const PlaceholderDark: Story = {
-  ...inDarkMode(Placeholder),
-  name: 'shows placeholder text before an option is selected in dark mode.',
-}
+export const PlaceholderDark: Story = inDarkMode(
+  Placeholder,
+  'shows placeholder text before an option is selected in dark mode.',
+)

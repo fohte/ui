@@ -29,7 +29,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'the centered popup and backdrop use dark colors',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the centered popup and backdrop use dark colors',
+)

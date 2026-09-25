@@ -30,7 +30,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'shows an open tooltip inside a provider with no delay in dark mode.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'shows an open tooltip inside a provider with no delay in dark mode.',
+)

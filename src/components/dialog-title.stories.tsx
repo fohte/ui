@@ -28,7 +28,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the dialog title uses the dark theme',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the dialog title uses the dark theme',
+)

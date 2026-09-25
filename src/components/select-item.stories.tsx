@@ -31,7 +31,7 @@ export const Selected: Story = {
   ),
 }
 
-export const SelectedDark: Story = {
-  ...inDarkMode(Selected),
-  name: 'shows the second option selected in an open select menu in dark mode.',
-}
+export const SelectedDark: Story = inDarkMode(
+  Selected,
+  'shows the second option selected in an open select menu in dark mode.',
+)

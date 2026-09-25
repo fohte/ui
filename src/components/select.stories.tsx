@@ -17,7 +17,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Closed: Story = {
-  name: 'shows a closed select with three available options.',
+  name: 'the default-size select shows its placeholder before an option is selected.',
   render: () => (
     <Select>
       <SelectTrigger aria-label="Choose an option">
@@ -63,17 +63,17 @@ export const Small: Story = {
   ),
 }
 
-export const ClosedDark: Story = {
-  ...inDarkMode(Closed),
-  name: 'shows a closed select with three available options in dark mode.',
-}
+export const ClosedDark: Story = inDarkMode(
+  Closed,
+  'the default-size select shows its placeholder before an option is selected in dark mode.',
+)
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'shows the second option selected in an open select in dark mode.',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'shows the second option selected in an open select in dark mode.',
+)
 
-export const SmallDark: Story = {
-  ...inDarkMode(Small),
-  name: 'shows a compact select trigger with its placeholder in dark mode.',
-}
+export const SmallDark: Story = inDarkMode(
+  Small,
+  'shows a compact select trigger with its placeholder in dark mode.',
+)

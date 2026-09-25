@@ -56,12 +56,12 @@ export const Open: Story = {
   ),
 }
 
-export const ClosedDark: Story = {
-  ...inDarkMode(Closed),
-  name: 'the dialog trigger appears against a dark background',
-}
+export const ClosedDark: Story = inDarkMode(
+  Closed,
+  'the dialog trigger appears against a dark background',
+)
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'the confirmation dialog uses dark colors',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the confirmation dialog uses dark colors',
+)

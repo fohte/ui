@@ -29,7 +29,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'the backdrop dims the page behind the dialog in dark mode',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the backdrop dims the page behind the dialog in dark mode',
+)

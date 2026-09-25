@@ -23,7 +23,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the header bar uses dark colors behind its heading and close control',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the header bar uses dark colors behind its heading and close control',
+)

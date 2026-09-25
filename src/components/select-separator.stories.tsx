@@ -39,7 +39,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'separates the fruit options from a bread option in an open select menu in dark mode.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'separates the fruit options from a bread option in an open select menu in dark mode.',
+)

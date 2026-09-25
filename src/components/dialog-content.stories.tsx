@@ -30,7 +30,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'the dialog content and close button use dark colors',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the dialog content and close button use dark colors',
+)

@@ -22,7 +22,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'shows the button that triggers a tooltip in dark mode.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'shows the button that triggers a tooltip in dark mode.',
+)

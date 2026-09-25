@@ -35,27 +35,27 @@ export const File: Story = {
   args: { type: 'file' },
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'an empty input shows its placeholder in dark mode.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'an empty input shows its placeholder in dark mode.',
+)
 
-export const WithValueDark: Story = {
-  ...inDarkMode(WithValue),
-  name: 'a prefilled input appears in dark mode.',
-}
+export const WithValueDark: Story = inDarkMode(
+  WithValue,
+  'a prefilled input appears in dark mode.',
+)
 
-export const DisabledDark: Story = {
-  ...inDarkMode(Disabled),
-  name: 'a disabled input shows its placeholder in dark mode.',
-}
+export const DisabledDark: Story = inDarkMode(
+  Disabled,
+  'a disabled input shows its placeholder in dark mode.',
+)
 
-export const InvalidDark: Story = {
-  ...inDarkMode(Invalid),
-  name: 'an invalid input shows its placeholder in dark mode.',
-}
+export const InvalidDark: Story = inDarkMode(
+  Invalid,
+  'an invalid input shows its placeholder in dark mode.',
+)
 
-export const FileDark: Story = {
-  ...inDarkMode(File),
-  name: 'a file input shows its upload control in dark mode.',
-}
+export const FileDark: Story = inDarkMode(
+  File,
+  'a file input shows its upload control in dark mode.',
+)

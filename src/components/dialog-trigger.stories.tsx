@@ -22,7 +22,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the outline trigger button appears against a dark background',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the outline trigger button appears against a dark background',
+)

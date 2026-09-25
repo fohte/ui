@@ -29,7 +29,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the dialog header groups a title and supporting text in dark mode',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the dialog header groups a title and supporting text in dark mode',
+)

@@ -34,7 +34,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the cancel and continue actions sit in a dark dialog footer',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the cancel and continue actions sit in a dark dialog footer',
+)

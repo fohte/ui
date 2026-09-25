@@ -24,7 +24,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the close button uses dark colors inside the dialog',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the close button uses dark colors inside the dialog',
+)

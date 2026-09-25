@@ -64,22 +64,22 @@ export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the default button uses dark theme colors.',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the default button uses dark theme colors.',
+)
 
-export const VariantsDark: Story = {
-  ...inDarkMode(Variants),
-  name: 'button variants appear with dark theme colors.',
-}
+export const VariantsDark: Story = inDarkMode(
+  Variants,
+  'button variants appear with dark theme colors.',
+)
 
-export const SizesDark: Story = {
-  ...inDarkMode(Sizes),
-  name: 'button sizes appear with dark theme colors.',
-}
+export const SizesDark: Story = inDarkMode(
+  Sizes,
+  'button sizes appear with dark theme colors.',
+)
 
-export const DisabledDark: Story = {
-  ...inDarkMode(Disabled),
-  name: 'the disabled button appears with dark theme colors.',
-}
+export const DisabledDark: Story = inDarkMode(
+  Disabled,
+  'the disabled button appears with dark theme colors.',
+)

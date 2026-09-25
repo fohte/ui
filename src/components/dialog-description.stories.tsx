@@ -32,7 +32,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...inDarkMode(Default),
-  name: 'the confirmation description appears beneath its title in dark mode',
-}
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the confirmation description appears beneath its title in dark mode',
+)

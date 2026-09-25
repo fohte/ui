@@ -36,7 +36,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'groups fruit options under a label in an open select menu in dark mode.',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'groups fruit options under a label in an open select menu in dark mode.',
+)

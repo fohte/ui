@@ -30,7 +30,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...inDarkMode(Open),
-  name: 'shows tooltip text above its trigger button in dark mode.',
-}
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'shows tooltip text above its trigger button in dark mode.',
+)
