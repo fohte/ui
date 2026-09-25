@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 
 import { Button } from '#components/button'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: Button,
@@ -58,22 +59,10 @@ export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)
 
-export const VariantsDark: Story = {
-  ...Variants,
-  globals: { theme: 'dark' },
-}
+export const VariantsDark: Story = inDarkMode(Variants)
 
-export const SizesDark: Story = {
-  ...Sizes,
-  globals: { theme: 'dark' },
-}
+export const SizesDark: Story = inDarkMode(Sizes)
 
-export const DisabledDark: Story = {
-  ...Disabled,
-  globals: { theme: 'dark' },
-}
+export const DisabledDark: Story = inDarkMode(Disabled)

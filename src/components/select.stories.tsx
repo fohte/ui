@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '#components/select'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: Select,
@@ -59,17 +60,8 @@ export const Small: Story = {
   ),
 }
 
-export const ClosedDark: Story = {
-  ...Closed,
-  globals: { theme: 'dark' },
-}
+export const ClosedDark: Story = inDarkMode(Closed)
 
-export const OpenDark: Story = {
-  ...Open,
-  globals: { theme: 'dark' },
-}
+export const OpenDark: Story = inDarkMode(Open)
 
-export const SmallDark: Story = {
-  ...Small,
-  globals: { theme: 'dark' },
-}
+export const SmallDark: Story = inDarkMode(Small)

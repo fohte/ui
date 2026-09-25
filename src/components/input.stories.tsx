@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Input } from '#components/input'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: Input,
@@ -28,27 +29,12 @@ export const File: Story = {
   args: { type: 'file' },
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)
 
-export const WithValueDark: Story = {
-  ...WithValue,
-  globals: { theme: 'dark' },
-}
+export const WithValueDark: Story = inDarkMode(WithValue)
 
-export const DisabledDark: Story = {
-  ...Disabled,
-  globals: { theme: 'dark' },
-}
+export const DisabledDark: Story = inDarkMode(Disabled)
 
-export const InvalidDark: Story = {
-  ...Invalid,
-  globals: { theme: 'dark' },
-}
+export const InvalidDark: Story = inDarkMode(Invalid)
 
-export const FileDark: Story = {
-  ...File,
-  globals: { theme: 'dark' },
-}
+export const FileDark: Story = inDarkMode(File)

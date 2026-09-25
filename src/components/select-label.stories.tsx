@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '#components/select'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: SelectLabel,
@@ -34,7 +35,4 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)

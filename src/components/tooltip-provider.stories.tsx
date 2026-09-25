@@ -7,6 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '#components/tooltip'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: TooltipProvider,
@@ -28,7 +29,4 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)

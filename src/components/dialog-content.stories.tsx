@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '#components/dialog'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: DialogContent,
@@ -28,7 +29,4 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = {
-  ...Open,
-  globals: { theme: 'dark' },
-}
+export const OpenDark: Story = inDarkMode(Open)

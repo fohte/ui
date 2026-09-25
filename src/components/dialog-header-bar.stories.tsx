@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '#components/button'
 import { DialogHeaderBar } from '#components/dialog'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: DialogHeaderBar,
@@ -21,7 +22,4 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)

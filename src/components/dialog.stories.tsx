@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '#components/dialog'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: Dialog,
@@ -53,12 +54,6 @@ export const Open: Story = {
   ),
 }
 
-export const ClosedDark: Story = {
-  ...Closed,
-  globals: { theme: 'dark' },
-}
+export const ClosedDark: Story = inDarkMode(Closed)
 
-export const OpenDark: Story = {
-  ...Open,
-  globals: { theme: 'dark' },
-}
+export const OpenDark: Story = inDarkMode(Open)

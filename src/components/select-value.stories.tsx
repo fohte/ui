@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Select, SelectTrigger, SelectValue } from '#components/select'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: SelectValue,
@@ -19,7 +20,4 @@ export const Placeholder: Story = {
   ),
 }
 
-export const PlaceholderDark: Story = {
-  ...Placeholder,
-  globals: { theme: 'dark' },
-}
+export const PlaceholderDark: Story = inDarkMode(Placeholder)

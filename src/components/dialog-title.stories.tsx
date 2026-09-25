@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '#components/dialog'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: DialogTitle,
@@ -26,7 +27,4 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = {
-  ...Default,
-  globals: { theme: 'dark' },
-}
+export const DefaultDark: Story = inDarkMode(Default)
