@@ -44,3 +44,13 @@ export const Open: Story = {
     </div>
   ),
 }
+
+export const ClosedDark: Story = {
+  ...Closed,
+  globals: { theme: 'dark' },
+}
+
+export const OpenDark: Story = {
+  ...Open,
+  globals: { theme: 'dark' },
+}

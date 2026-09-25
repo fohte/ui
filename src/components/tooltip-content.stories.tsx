@@ -27,3 +27,8 @@ export const Open: Story = {
     </TooltipProvider>
   ),
 }
+
+export const OpenDark: Story = {
+  ...Open,
+  globals: { theme: 'dark' },
+}

@@ -18,3 +18,8 @@ export const Default: Story = {
     </Select>
   ),
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}

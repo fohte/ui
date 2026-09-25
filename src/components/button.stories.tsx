@@ -57,3 +57,23 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}
+
+export const VariantsDark: Story = {
+  ...Variants,
+  globals: { theme: 'dark' },
+}
+
+export const SizesDark: Story = {
+  ...Sizes,
+  globals: { theme: 'dark' },
+}
+
+export const DisabledDark: Story = {
+  ...Disabled,
+  globals: { theme: 'dark' },
+}

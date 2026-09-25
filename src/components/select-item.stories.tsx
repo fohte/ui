@@ -28,3 +28,8 @@ export const Selected: Story = {
     </Select>
   ),
 }
+
+export const SelectedDark: Story = {
+  ...Selected,
+  globals: { theme: 'dark' },
+}

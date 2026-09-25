@@ -19,3 +19,8 @@ export const Default: Story = {
     </Dialog>
   ),
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}

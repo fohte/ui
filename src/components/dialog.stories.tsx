@@ -52,3 +52,13 @@ export const Open: Story = {
     </Dialog>
   ),
 }
+
+export const ClosedDark: Story = {
+  ...Closed,
+  globals: { theme: 'dark' },
+}
+
+export const OpenDark: Story = {
+  ...Open,
+  globals: { theme: 'dark' },
+}

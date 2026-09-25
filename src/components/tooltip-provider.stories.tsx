@@ -27,3 +27,8 @@ export const Default: Story = {
     </TooltipProvider>
   ),
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}

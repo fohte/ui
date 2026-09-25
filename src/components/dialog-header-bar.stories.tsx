@@ -20,3 +20,8 @@ export const Default: Story = {
     </DialogHeaderBar>
   ),
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}

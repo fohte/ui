@@ -18,3 +18,8 @@ export const Placeholder: Story = {
     </Select>
   ),
 }
+
+export const PlaceholderDark: Story = {
+  ...Placeholder,
+  globals: { theme: 'dark' },
+}

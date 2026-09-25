@@ -27,3 +27,28 @@ export const Invalid: Story = {
 export const File: Story = {
   args: { type: 'file' },
 }
+
+export const DefaultDark: Story = {
+  ...Default,
+  globals: { theme: 'dark' },
+}
+
+export const WithValueDark: Story = {
+  ...WithValue,
+  globals: { theme: 'dark' },
+}
+
+export const DisabledDark: Story = {
+  ...Disabled,
+  globals: { theme: 'dark' },
+}
+
+export const InvalidDark: Story = {
+  ...Invalid,
+  globals: { theme: 'dark' },
+}
+
+export const FileDark: Story = {
+  ...File,
+  globals: { theme: 'dark' },
+}

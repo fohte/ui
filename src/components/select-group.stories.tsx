@@ -33,3 +33,8 @@ export const Open: Story = {
     </Select>
   ),
 }
+
+export const OpenDark: Story = {
+  ...Open,
+  globals: { theme: 'dark' },
+}

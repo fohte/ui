@@ -27,3 +27,8 @@ export const Open: Story = {
     </Dialog>
   ),
 }
+
+export const OpenDark: Story = {
+  ...Open,
+  globals: { theme: 'dark' },
+}
