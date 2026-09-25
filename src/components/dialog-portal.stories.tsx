@@ -16,6 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Open: Story = {
+  name: 'the open dialog renders its content in a portal above the page',
   render: () => (
     <Dialog open>
       <DialogPortal>
@@ -28,4 +29,7 @@ export const Open: Story = {
   ),
 }
 
-export const OpenDark: Story = inDarkMode(Open)
+export const OpenDark: Story = {
+  ...inDarkMode(Open),
+  name: 'the portaled dialog and backdrop use dark colors',
+}

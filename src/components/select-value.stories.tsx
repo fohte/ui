@@ -11,6 +11,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Placeholder: Story = {
+  name: 'shows placeholder text before an option is selected.',
   render: () => (
     <Select>
       <SelectTrigger aria-label="Choose an option">
@@ -20,4 +21,7 @@ export const Placeholder: Story = {
   ),
 }
 
-export const PlaceholderDark: Story = inDarkMode(Placeholder)
+export const PlaceholderDark: Story = {
+  ...inDarkMode(Placeholder),
+  name: 'shows placeholder text before an option is selected in dark mode.',
+}

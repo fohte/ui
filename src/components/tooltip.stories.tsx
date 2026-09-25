@@ -17,6 +17,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Closed: Story = {
+  name: 'shows a trigger button with its tooltip closed.',
   render: () => (
     <div className="flex h-32 w-48 items-center justify-center">
       <TooltipProvider>
@@ -32,6 +33,7 @@ export const Closed: Story = {
 }
 
 export const Open: Story = {
+  name: 'shows tooltip text below its trigger button.',
   render: () => (
     <div className="flex h-32 w-48 items-center justify-center">
       <TooltipProvider>
@@ -46,6 +48,12 @@ export const Open: Story = {
   ),
 }
 
-export const ClosedDark: Story = inDarkMode(Closed)
+export const ClosedDark: Story = {
+  ...inDarkMode(Closed),
+  name: 'shows a trigger button with its tooltip closed in dark mode.',
+}
 
-export const OpenDark: Story = inDarkMode(Open)
+export const OpenDark: Story = {
+  ...inDarkMode(Open),
+  name: 'shows tooltip text below its trigger button in dark mode.',
+}

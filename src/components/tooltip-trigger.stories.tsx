@@ -12,6 +12,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'shows the button that triggers a tooltip.',
   render: () => (
     <Tooltip>
       <TooltipTrigger render={<Button variant="outline" />}>
@@ -21,4 +22,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'shows the button that triggers a tooltip in dark mode.',
+}

@@ -11,6 +11,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'shows a closed select trigger with its placeholder.',
   render: () => (
     <Select>
       <SelectTrigger aria-label="Choose an option">
@@ -20,4 +21,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'shows a closed select trigger with its placeholder in dark mode.',
+}

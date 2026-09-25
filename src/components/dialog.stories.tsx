@@ -20,6 +20,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Closed: Story = {
+  name: 'the closed dialog shows only its trigger button',
   render: () => (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>
@@ -36,6 +37,7 @@ export const Closed: Story = {
 }
 
 export const Open: Story = {
+  name: 'the dialog asks users to review changes before continuing',
   render: () => (
     <Dialog open>
       <DialogContent>
@@ -54,6 +56,12 @@ export const Open: Story = {
   ),
 }
 
-export const ClosedDark: Story = inDarkMode(Closed)
+export const ClosedDark: Story = {
+  ...inDarkMode(Closed),
+  name: 'the dialog trigger appears against a dark background',
+}
 
-export const OpenDark: Story = inDarkMode(Open)
+export const OpenDark: Story = {
+  ...inDarkMode(Open),
+  name: 'the confirmation dialog uses dark colors',
+}

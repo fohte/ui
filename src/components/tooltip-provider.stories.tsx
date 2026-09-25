@@ -17,6 +17,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'shows an open tooltip inside a provider with no delay.',
   render: () => (
     <TooltipProvider delay={0}>
       <Tooltip open>
@@ -29,4 +30,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'shows an open tooltip inside a provider with no delay in dark mode.',
+}

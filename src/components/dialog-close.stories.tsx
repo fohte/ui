@@ -12,6 +12,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'an outlined button closes the open dialog',
   render: () => (
     <Dialog open>
       <DialogContent showCloseButton={false}>
@@ -23,4 +24,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'the close button uses dark colors inside the dialog',
+}

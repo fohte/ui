@@ -19,6 +19,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'labels a group of fruit options in an open select menu.',
   render: () => (
     <Select open value="pear">
       <SelectTrigger aria-label="Choose a fruit">
@@ -35,4 +36,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'labels a group of fruit options in an open select menu in dark mode.',
+}

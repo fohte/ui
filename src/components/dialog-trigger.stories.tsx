@@ -12,6 +12,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'an outline button opens the dialog',
   render: () => (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>
@@ -21,4 +22,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'the outline trigger button appears against a dark background',
+}

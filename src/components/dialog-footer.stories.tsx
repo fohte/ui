@@ -18,6 +18,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  name: 'the footer aligns cancel and continue actions at the bottom of the dialog',
   render: () => (
     <Dialog open>
       <DialogContent>
@@ -33,4 +34,7 @@ export const Default: Story = {
   ),
 }
 
-export const DefaultDark: Story = inDarkMode(Default)
+export const DefaultDark: Story = {
+  ...inDarkMode(Default),
+  name: 'the cancel and continue actions sit in a dark dialog footer',
+}

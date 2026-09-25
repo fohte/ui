@@ -172,12 +172,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Light: Story = {
+  name: 'the token reference shows color, typography, and radius samples in light mode.',
   globals: {
     theme: 'light',
   },
 }
 
 export const Dark: Story = {
+  name: 'the token reference shows color, typography, and radius samples in dark mode.',
   globals: {
     theme: 'dark',
   },
