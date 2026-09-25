@@ -1,6 +1,6 @@
 {
   "name": "@fohte/ui",
-  "description": "Shared design tokens for fohte applications",
+  "description": "Shared design tokens and React components for fohte applications.",
   "license": "MIT",
   "author": "Hayato Kawai <fohte.hk@gmail.com>",
   "repository": {
@@ -10,16 +10,35 @@
   "packageManager": "pnpm@12.4.2",
   "type": "module",
   "exports": {
-    "./tokens.css": "./tokens.css"
+    "./tokens.css": "./tokens.css",
+    "./button": "./src/components/button.tsx",
+    "./dialog": "./src/components/dialog.tsx",
+    "./input": "./src/components/input.tsx",
+    "./select": "./src/components/select.tsx",
+    "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
-    "tokens.css"
+    "tokens.css",
+    "src/utils.ts",
+    "src/components/button.tsx",
+    "src/components/dialog.tsx",
+    "src/components/input.tsx",
+    "src/components/select.tsx",
+    "src/components/tooltip.tsx"
   ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "imports": {
+    "#utils": {
+      "types": "./src/utils.ts",
+      "default": "./src/utils.ts"
+    },
+    "#components/*": {
+      "types": "./src/components/*.tsx",
+      "default": "./src/components/*.tsx"
+    },
     "#*": {
       "types": [
         "./src/*.tsx",
@@ -42,18 +61,16 @@
     "storybook:screenshot": "vitest run --config vitest.screenshot.config.ts"
   },
   "devDependencies": {
-    "neverthrow": "8.2.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
     "@commitlint/cli": "21.2.2",
     "@fohte/eslint-config": "0.5.0",
     "@fohte/storybook-addon": "0.2.0",
+    "@ninoseki/eslint-plugin-neverthrow": "0.3.1",
     "@storybook/addon-docs": "10.6.0",
     "@storybook/addon-themes": "10.6.0",
     "@storybook/addon-vitest": "10.6.0",
     "@storybook/react-vite": "10.6.0",
     "@storycap-testrun/browser": "3.1.0",
-    "@ninoseki/eslint-plugin-neverthrow": "0.3.1",
+    "@tailwindcss/vite": "4.3.3",
     "@tsconfig/node-lts": "24.0.1",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.13.5",
@@ -65,14 +82,31 @@
     "eslint": "10.10.0",
     "eslint-plugin-storybook": "10.6.0",
     "knip": "6.36.0",
+    "neverthrow": "8.2.0",
     "playwright": "1.63.0",
     "prettier": "3.9.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "reg-publish-s3-plugin": "0.14.4",
     "reg-simple-keygen-plugin": "0.14.2",
     "reg-suit": "0.14.5",
+    "shadcn": "4.21.0",
     "storybook": "10.6.0",
+    "tailwindcss": "4.3.3",
+    "tw-animate-css": "1.4.0",
     "typescript": "6.0.3",
     "vitest": "4.1.11"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "dependencies": {
+    "@base-ui/react": "1.3.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.577.0",
+    "tailwind-merge": "3.5.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
 }

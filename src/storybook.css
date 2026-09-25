@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fohte/ui/tokens.css';
+
+@source '.';
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

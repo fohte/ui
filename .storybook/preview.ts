@@ -1,4 +1,4 @@
-import '@fohte/ui/tokens.css'
+import '#storybook.css'
 
 import {
   afterEach,

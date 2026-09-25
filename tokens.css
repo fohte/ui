@@ -123,3 +123,17 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
+
+:root {
+  --btn-radius-xs: min(var(--radius-md), 10px);
+  --btn-radius-sm: min(var(--radius-md), 12px);
+  --dialog-inset: calc(100% - 2rem);
+  --tooltip-arrow-offset: calc(-50% - 2px);
+}
+
+[data-slot='select-content'] {
+  --select-content-min-width: max(
+    var(--anchor-width),
+    calc(var(--spacing) * 36)
+  );
+}
