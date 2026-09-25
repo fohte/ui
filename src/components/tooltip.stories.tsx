@@ -17,26 +17,30 @@ type Story = StoryObj<typeof meta>
 
 export const Closed: Story = {
   render: () => (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger render={<Button variant="outline" />}>
-          Hover me
-        </TooltipTrigger>
-        <TooltipContent>Tooltip content</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className="flex h-32 w-48 items-center justify-center">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger render={<Button variant="outline" />}>
+            Hover me
+          </TooltipTrigger>
+          <TooltipContent>Tooltip content</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
   ),
 }
 
 export const Open: Story = {
   render: () => (
-    <TooltipProvider>
-      <Tooltip open>
-        <TooltipTrigger render={<Button variant="outline" />}>
-          Hover me
-        </TooltipTrigger>
-        <TooltipContent>Tooltip content</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className="flex h-32 w-48 items-center justify-center">
+      <TooltipProvider>
+        <Tooltip open>
+          <TooltipTrigger render={<Button variant="outline" />}>
+            Hover me
+          </TooltipTrigger>
+          <TooltipContent side="bottom">Tooltip content</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
   ),
 }
