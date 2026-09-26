@@ -12,6 +12,8 @@
   "exports": {
     "./tokens.css": "./tokens.css",
     "./button": "./src/components/button.tsx",
+    "./color-swatch": "./src/components/color-swatch.tsx",
+    "./color-swatch-picker": "./src/components/color-swatch-picker.tsx",
     "./dialog": "./src/components/dialog.tsx",
     "./input": "./src/components/input.tsx",
     "./select": "./src/components/select.tsx",
@@ -21,6 +23,8 @@
     "tokens.css",
     "src/utils.ts",
     "src/components/button.tsx",
+    "src/components/color-swatch.tsx",
+    "src/components/color-swatch-picker.tsx",
     "src/components/dialog.tsx",
     "src/components/input.tsx",
     "src/components/select.tsx",
