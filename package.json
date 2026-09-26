@@ -15,6 +15,7 @@
     "./dialog": "./src/components/dialog.tsx",
     "./input": "./src/components/input.tsx",
     "./select": "./src/components/select.tsx",
+    "./segmented-control": "./src/components/segmented-control.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
@@ -24,6 +25,7 @@
     "src/components/dialog.tsx",
     "src/components/input.tsx",
     "src/components/select.tsx",
+    "src/components/segmented-control.tsx",
     "src/components/tooltip.tsx"
   ],
   "publishConfig": {
