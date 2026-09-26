@@ -31,6 +31,7 @@ export const Variants: Story = {
       <Button variant="ghost">Ghost</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="link">Link</Button>
+      <Button variant="plain">Plain</Button>
     </div>
   ),
 }
@@ -64,6 +65,49 @@ export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
 }
 
+export const PlainText: Story = {
+  name: 'plain text sits inline with surrounding copy.',
+  args: { variant: 'plain', children: 'Edit' },
+  render: (args) => (
+    <p className="text-sm">
+      Update your preferences <Button {...args} /> when needed.
+    </p>
+  ),
+}
+
+export const PlainIcon: Story = {
+  name: 'a plain icon action has no button box.',
+  args: {
+    variant: 'plain',
+    'aria-label': 'Add item',
+    children: <PlusIcon />,
+  },
+}
+
+export const PlainSizes: Story = {
+  name: 'plain text keeps its inherited size across button sizes.',
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2 text-sm">
+      {(
+        [
+          'default',
+          'xs',
+          'sm',
+          'lg',
+          'icon',
+          'icon-xs',
+          'icon-sm',
+          'icon-lg',
+        ] as const
+      ).map((size) => (
+        <Button key={size} variant="plain" size={size}>
+          {size}
+        </Button>
+      ))}
+    </div>
+  ),
+}
+
 export const DefaultDark: Story = inDarkMode(
   Default,
   'the default button uses dark theme colors.',
@@ -82,4 +126,19 @@ export const SizesDark: Story = inDarkMode(
 export const DisabledDark: Story = inDarkMode(
   Disabled,
   'the disabled button appears with dark theme colors.',
+)
+
+export const PlainTextDark: Story = inDarkMode(
+  PlainText,
+  'plain text sits inline with surrounding copy in dark mode.',
+)
+
+export const PlainIconDark: Story = inDarkMode(
+  PlainIcon,
+  'a plain icon action has no button box in dark mode.',
+)
+
+export const PlainSizesDark: Story = inDarkMode(
+  PlainSizes,
+  'plain text keeps its inherited size across button sizes in dark mode.',
 )
