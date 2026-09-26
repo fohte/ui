@@ -3,8 +3,11 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '#utils'
 
+const buttonBaseClasses =
+  "group/button inline-flex shrink-0 items-center justify-center outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-mono font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive/50 aria-invalid:ring-3 aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  `${buttonBaseClasses} rounded-lg border border-transparent bg-clip-padding text-sm font-mono font-medium whitespace-nowrap transition-all focus-visible:border-ring active:translate-y-px aria-invalid:border-destructive/50`,
   {
     variants: {
       variant: {
@@ -41,10 +44,6 @@ const buttonVariants = cva(
   },
 )
 
-const plainButtonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-)
-
 type ButtonVariant = VariantProps<typeof buttonVariants>['variant'] | 'plain'
 
 function Button({
@@ -56,14 +55,14 @@ function Button({
   variant?: ButtonVariant
   size?: VariantProps<typeof buttonVariants>['size']
 }) {
+  // Plain inherits typography and should not regain size-specific button geometry.
+  const classes =
+    variant === 'plain' ? buttonBaseClasses : buttonVariants({ variant, size })
+
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(
-        variant === 'plain'
-          ? plainButtonVariants({ className })
-          : buttonVariants({ variant, size, className }),
-      )}
+      className={cn(classes, className)}
       {...props}
     />
   )
