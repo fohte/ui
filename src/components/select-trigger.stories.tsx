@@ -36,3 +36,8 @@ export const CustomIcon: Story = {
     </Select>
   ),
 }
+
+export const CustomIconDark: Story = inDarkMode(
+  CustomIcon,
+  'shows a select trigger with a larger icon in dark mode.',
+)
