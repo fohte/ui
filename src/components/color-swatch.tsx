@@ -15,7 +15,7 @@ function ColorSwatch({ color, className, ...props }: ColorSwatchProps) {
       aria-hidden="true"
       data-slot="color-swatch"
       className={cn(
-        'size-2 shrink-0 rounded-full bg-(--color-swatch)',
+        'inline-block size-2 shrink-0 rounded-full bg-(--color-swatch)',
         className,
       )}
       style={colorSwatchStyle(color)}

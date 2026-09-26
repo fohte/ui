@@ -31,6 +31,7 @@ const renderPicker = (value?: string, disabled?: boolean) => (
 
 const meta = {
   component: ColorSwatchPicker,
+  args: { 'aria-label': 'Sample color' },
 } satisfies Meta<typeof ColorSwatchPicker>
 
 export default meta
