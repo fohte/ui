@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/fohte/ui/compare/v0.1.1...v0.1.2) (2026-09-26)
+
+
+### Bug Fixes
+
+* **select:** restore icon customization for `SelectTrigger` ([#27](https://github.com/fohte/ui/issues/27)) ([4521c22](https://github.com/fohte/ui/commit/4521c2215e71698bf34254c01193b4e80d13a60b))
+
 ## [0.1.1](https://github.com/fohte/ui/compare/v0.1.0...v0.1.1) (2026-09-25)
 
 
