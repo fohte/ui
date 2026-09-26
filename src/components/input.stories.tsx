@@ -17,7 +17,7 @@ function GhostInput({
   ...props
 }: ComponentProps<typeof Input> & { hovered?: boolean }) {
   return (
-    <div className="px-1">
+    <div className="p-2">
       <Input {...props} data-hovered={hovered ? '' : undefined} />
     </div>
   )

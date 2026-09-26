@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ReactNode } from 'react'
 
 import {
   Select,
@@ -15,6 +16,10 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+function GhostSelectStory({ children }: { children: ReactNode }) {
+  return <div className="p-2">{children}</div>
+}
 
 export const Default: Story = {
   name: 'shows a closed select trigger with its placeholder.',
@@ -51,87 +56,99 @@ export const CustomIconDark: Story = inDarkMode(
 export const Ghost: Story = {
   name: 'a ghost select trigger shows its placeholder without a border.',
   render: () => (
-    <Select>
-      <SelectTrigger variant="ghost" aria-label="Choose an option">
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-    </Select>
+    <GhostSelectStory>
+      <Select>
+        <SelectTrigger variant="ghost" aria-label="Choose an option">
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
 export const GhostHovered: Story = {
   name: 'a hovered ghost select trigger highlights its background.',
   render: () => (
-    <Select>
-      <SelectTrigger
-        variant="ghost"
-        aria-label="Choose an option"
-        data-hovered=""
-      >
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-    </Select>
+    <GhostSelectStory>
+      <Select>
+        <SelectTrigger
+          variant="ghost"
+          aria-label="Choose an option"
+          data-hovered=""
+        >
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
 export const GhostFocused: Story = {
   name: 'a focused ghost select trigger shows its underline.',
   render: () => (
-    <Select>
-      <SelectTrigger variant="ghost" aria-label="Choose an option" autoFocus>
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-    </Select>
+    <GhostSelectStory>
+      <Select>
+        <SelectTrigger variant="ghost" aria-label="Choose an option" autoFocus>
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
 export const GhostInvalid: Story = {
   name: 'a focused invalid ghost select trigger shows its destructive underline.',
   render: () => (
-    <Select>
-      <SelectTrigger
-        variant="ghost"
-        aria-label="Choose an option"
-        aria-invalid={true}
-        autoFocus
-      >
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-    </Select>
+    <GhostSelectStory>
+      <Select>
+        <SelectTrigger
+          variant="ghost"
+          aria-label="Choose an option"
+          aria-invalid={true}
+          autoFocus
+        >
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
 export const GhostOpen: Story = {
   name: 'an open ghost select trigger keeps its underline visible.',
   render: () => (
-    <Select open value="first">
-      <SelectTrigger variant="ghost" aria-label="Choose an option">
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
-        <SelectItem value="first">First option</SelectItem>
-        <SelectItem value="second">Second option</SelectItem>
-      </SelectContent>
-    </Select>
+    <GhostSelectStory>
+      <Select open value="first">
+        <SelectTrigger variant="ghost" aria-label="Choose an option">
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+        <SelectContent alignItemWithTrigger={false}>
+          <SelectItem value="first">First option</SelectItem>
+          <SelectItem value="second">Second option</SelectItem>
+        </SelectContent>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
 export const GhostInvalidOpen: Story = {
   name: 'an invalid open ghost select trigger keeps its destructive underline.',
   render: () => (
-    <Select open value="first">
-      <SelectTrigger
-        variant="ghost"
-        aria-label="Choose an option"
-        aria-invalid={true}
-      >
-        <SelectValue placeholder="Choose an option" />
-      </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
-        <SelectItem value="first">First option</SelectItem>
-        <SelectItem value="second">Second option</SelectItem>
-      </SelectContent>
-    </Select>
+    <GhostSelectStory>
+      <Select open value="first">
+        <SelectTrigger
+          variant="ghost"
+          aria-label="Choose an option"
+          aria-invalid={true}
+        >
+          <SelectValue placeholder="Choose an option" />
+        </SelectTrigger>
+        <SelectContent alignItemWithTrigger={false}>
+          <SelectItem value="first">First option</SelectItem>
+          <SelectItem value="second">Second option</SelectItem>
+        </SelectContent>
+      </Select>
+    </GhostSelectStory>
   ),
 }
 
