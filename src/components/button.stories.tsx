@@ -31,6 +31,7 @@ export const Variants: Story = {
       <Button variant="ghost">Ghost</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="link">Link</Button>
+      <Button variant="plain">Plain</Button>
     </div>
   ),
 }
@@ -62,6 +63,26 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   name: 'the button displays its disabled appearance.',
   args: { children: 'Disabled', disabled: true },
+}
+
+export const PlainText: Story = {
+  name: 'plain text sits inline with surrounding copy.',
+  args: { variant: 'plain', size: 'lg', children: 'Edit' },
+  render: (args) => (
+    <p className="text-sm">
+      Update your preferences <Button {...args} /> when needed.
+    </p>
+  ),
+}
+
+export const PlainIcon: Story = {
+  name: 'a plain icon action has no button box.',
+  args: {
+    variant: 'plain',
+    size: 'icon',
+    'aria-label': 'Add item',
+    children: <PlusIcon />,
+  },
 }
 
 export const DefaultDark: Story = inDarkMode(
