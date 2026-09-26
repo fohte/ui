@@ -12,30 +12,21 @@ const colors = [
   { color: '#896b9c', label: 'Sample orchid' },
 ]
 
-const renderPicker = (
-  args: NonNullable<Story['args']>,
-  value?: string,
-  disabled?: boolean,
-) => (
-  <ColorSwatchPicker
-    {...args}
-    disabled={disabled}
-    {...(value === undefined ? {} : { value })}
-  >
-    {colors.map(({ color, label }) => (
-      <ColorSwatchPicker.Item
-        key={color}
-        aria-label={label}
-        color={color}
-        value={color}
-      />
-    ))}
-  </ColorSwatchPicker>
-)
-
 const meta = {
   component: ColorSwatchPicker,
   args: { 'aria-label': 'Sample color' },
+  render: (args) => (
+    <ColorSwatchPicker {...args}>
+      {colors.map(({ color, label }) => (
+        <ColorSwatchPicker.Item
+          key={color}
+          aria-label={label}
+          color={color}
+          value={color}
+        />
+      ))}
+    </ColorSwatchPicker>
+  ),
 } satisfies Meta<typeof ColorSwatchPicker>
 
 export default meta
@@ -43,17 +34,16 @@ type Story = StoryObj<typeof meta>
 
 export const Unselected: Story = {
   name: 'the picker shows unselected square color swatches.',
-  render: (args) => renderPicker(args),
 }
 
 export const Selected: Story = {
   name: 'the selected swatch has a ring around it.',
-  render: (args) => renderPicker(args, selectedColor),
+  args: { value: selectedColor },
 }
 
 export const Disabled: Story = {
   name: 'the disabled picker shows dimmed color swatches.',
-  render: (args) => renderPicker(args, selectedColor, true),
+  args: { value: selectedColor, disabled: true },
 }
 
 export const UnselectedDark: Story = inDarkMode(
