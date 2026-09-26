@@ -85,6 +85,22 @@ export const GhostFocused: Story = {
   ),
 }
 
+export const GhostInvalid: Story = {
+  name: 'a focused invalid ghost select trigger shows its destructive underline.',
+  render: () => (
+    <Select>
+      <SelectTrigger
+        variant="ghost"
+        aria-label="Choose an option"
+        aria-invalid={true}
+        autoFocus
+      >
+        <SelectValue placeholder="Choose an option" />
+      </SelectTrigger>
+    </Select>
+  ),
+}
+
 export const GhostOpen: Story = {
   name: 'an open ghost select trigger keeps its underline visible.',
   render: () => (
@@ -92,7 +108,26 @@ export const GhostOpen: Story = {
       <SelectTrigger variant="ghost" aria-label="Choose an option">
         <SelectValue placeholder="Choose an option" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent alignItemWithTrigger={false}>
+        <SelectItem value="first">First option</SelectItem>
+        <SelectItem value="second">Second option</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+}
+
+export const GhostInvalidOpen: Story = {
+  name: 'an invalid open ghost select trigger keeps its destructive underline.',
+  render: () => (
+    <Select open value="first">
+      <SelectTrigger
+        variant="ghost"
+        aria-label="Choose an option"
+        aria-invalid={true}
+      >
+        <SelectValue placeholder="Choose an option" />
+      </SelectTrigger>
+      <SelectContent alignItemWithTrigger={false}>
         <SelectItem value="first">First option</SelectItem>
         <SelectItem value="second">Second option</SelectItem>
       </SelectContent>
@@ -115,7 +150,17 @@ export const GhostFocusedDark: Story = inDarkMode(
   'a focused ghost select trigger shows its underline in dark mode.',
 )
 
+export const GhostInvalidDark: Story = inDarkMode(
+  GhostInvalid,
+  'a focused invalid ghost select trigger shows its destructive underline in dark mode.',
+)
+
 export const GhostOpenDark: Story = inDarkMode(
   GhostOpen,
   'an open ghost select trigger keeps its underline visible in dark mode.',
+)
+
+export const GhostInvalidOpenDark: Story = inDarkMode(
+  GhostInvalidOpen,
+  'an invalid open ghost select trigger keeps its destructive underline in dark mode.',
 )

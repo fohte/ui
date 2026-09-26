@@ -45,6 +45,11 @@ export const GhostFocused: Story = {
   args: { variant: 'ghost', autoFocus: true },
 }
 
+export const GhostInvalid: Story = {
+  name: 'a focused invalid ghost input shows its destructive underline.',
+  args: { variant: 'ghost', 'aria-invalid': true, autoFocus: true },
+}
+
 export const File: Story = {
   name: 'a file input shows its browser-provided upload control.',
   args: { type: 'file' },
@@ -83,6 +88,11 @@ export const GhostHoveredDark: Story = inDarkMode(
 export const GhostFocusedDark: Story = inDarkMode(
   GhostFocused,
   'a focused ghost input shows its underline in dark mode.',
+)
+
+export const GhostInvalidDark: Story = inDarkMode(
+  GhostInvalid,
+  'a focused invalid ghost input shows its destructive underline in dark mode.',
 )
 
 export const FileDark: Story = inDarkMode(

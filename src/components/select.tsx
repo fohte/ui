@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import * as React from 'react'
 
-import { cn } from '#utils'
+import { cn, ghostFieldClassName } from '#utils'
 
 const Select = SelectPrimitive.Root
 
@@ -14,8 +14,10 @@ const selectTriggerVariants = cva(
       variant: {
         default:
           'rounded-none border border-input bg-transparent py-2 pr-2 pl-2.5 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40',
-        ghost:
-          '-mx-1 border-x-0 border-t-0 border-b border-transparent bg-transparent px-1 py-2 hover:bg-accent/50 data-[hovered]:bg-accent/50 focus:border-b-border-strong focus-visible:border-b-border-strong focus-visible:ring-0 data-[popup-open]:border-b-border-strong aria-invalid:border-destructive aria-invalid:ring-0 dark:bg-transparent dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-0',
+        ghost: cn(
+          ghostFieldClassName,
+          'py-2 data-[popup-open]:border-b-border-strong aria-invalid:data-[popup-open]:border-b-destructive dark:aria-invalid:data-[popup-open]:border-b-destructive/50',
+        ),
       },
     },
     defaultVariants: {
