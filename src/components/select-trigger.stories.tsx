@@ -25,3 +25,14 @@ export const DefaultDark: Story = inDarkMode(
   Default,
   'shows a closed select trigger with its placeholder in dark mode.',
 )
+
+export const CustomIcon: Story = {
+  name: 'shows a select trigger with a larger icon.',
+  render: () => (
+    <Select>
+      <SelectTrigger aria-label="Choose an option" iconClassName="size-5">
+        <SelectValue placeholder="Choose an option" />
+      </SelectTrigger>
+    </Select>
+  ),
+}
