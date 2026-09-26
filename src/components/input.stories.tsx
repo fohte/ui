@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ComponentProps } from 'react'
 
 import { Input } from '#components/input'
 import { inDarkMode } from '#storybook-utils'
@@ -10,6 +11,17 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+function GhostInput({
+  hovered = false,
+  ...props
+}: ComponentProps<typeof Input> & { hovered?: boolean }) {
+  return (
+    <div className="px-1">
+      <Input {...props} data-hovered={hovered ? '' : undefined} />
+    </div>
+  )
+}
 
 export const Default: Story = {
   name: 'an empty input shows its placeholder text.',
@@ -33,21 +45,25 @@ export const Invalid: Story = {
 export const Ghost: Story = {
   name: 'a ghost input has a transparent border and background.',
   args: { variant: 'ghost' },
+  render: (args) => <GhostInput {...args} />,
 }
 
 export const GhostHovered: Story = {
   name: 'a hovered ghost input highlights its background.',
-  args: { variant: 'ghost', 'data-hovered': '' },
+  args: { variant: 'ghost' },
+  render: (args) => <GhostInput {...args} hovered />,
 }
 
 export const GhostFocused: Story = {
   name: 'a focused ghost input shows its underline.',
   args: { variant: 'ghost', autoFocus: true },
+  render: (args) => <GhostInput {...args} />,
 }
 
 export const GhostInvalid: Story = {
   name: 'a focused invalid ghost input shows its destructive underline.',
   args: { variant: 'ghost', 'aria-invalid': true, autoFocus: true },
+  render: (args) => <GhostInput {...args} />,
 }
 
 export const File: Story = {
