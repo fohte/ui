@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import type { ComponentProps } from 'react'
 
 const segmentedControlItemVariants = cva(
   'rounded-md px-2.5 py-1 text-xs font-medium transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
@@ -17,26 +18,26 @@ type SegmentedControlOption<Value extends string> = {
   label: string
 }
 
-type SegmentedControlProps<Value extends string> = {
+type SegmentedControlProps<Value extends string> = Omit<
+  ComponentProps<'div'>,
+  'children' | 'className' | 'onChange' | 'role' | 'style'
+> & {
   value: Value
   options: ReadonlyArray<SegmentedControlOption<Value>>
   onValueChange: (value: Value) => void
-  'aria-label'?: string
-  'aria-labelledby'?: string
 }
 
 function SegmentedControl<Value extends string>({
   value,
   options,
   onValueChange,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
+  ...props
 }: SegmentedControlProps<Value>) {
   return (
     <div
+      {...props}
+      data-slot="segmented-control"
       role="group"
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
       className="inline-flex items-center rounded-md bg-secondary p-0.5"
     >
       {options.map((option) => {
@@ -45,6 +46,7 @@ function SegmentedControl<Value extends string>({
         return (
           <button
             key={option.value}
+            data-slot="segmented-control-item"
             type="button"
             aria-pressed={selected}
             className={segmentedControlItemVariants({ selected })}
