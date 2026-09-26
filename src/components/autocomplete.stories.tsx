@@ -26,9 +26,9 @@ type Story = StoryObj<typeof meta>
 export const Open: Story = {
   name: 'shows suggestions in an open autocomplete.',
   args: { items: suggestions },
-  render: () => (
+  render: (args) => (
     <div className="w-72">
-      <Autocomplete items={suggestions} defaultOpen>
+      <Autocomplete {...args} defaultOpen>
         <AutocompleteInput aria-label="Search suggestions" />
         <AutocompleteContent>
           <AutocompleteEmpty>No suggestions found.</AutocompleteEmpty>
