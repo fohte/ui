@@ -21,6 +21,7 @@
   "files": [
     "tokens.css",
     "src/utils.ts",
+    "src/input-styles.ts",
     "src/components/autocomplete.tsx",
     "src/components/button.tsx",
     "src/components/dialog.tsx",
@@ -33,6 +34,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "imports": {
+    "#input-styles": {
+      "types": "./src/input-styles.ts",
+      "default": "./src/input-styles.ts"
+    },
     "#utils": {
       "types": "./src/utils.ts",
       "default": "./src/utils.ts"

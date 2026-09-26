@@ -24,6 +24,14 @@ The package does not follow `prefers-color-scheme`; the consuming application co
 Import components from their subpaths:
 
 ```tsx
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+} from '@fohte/ui/autocomplete'
 import { Button } from '@fohte/ui/button'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
 import { Input } from '@fohte/ui/input'
