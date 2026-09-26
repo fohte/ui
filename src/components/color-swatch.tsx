@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { cn } from '#utils'
+import { cn, colorSwatchStyle } from '#utils'
 
 type ColorSwatchProps = Omit<
   React.ComponentProps<'span'>,
@@ -9,13 +9,7 @@ type ColorSwatchProps = Omit<
   color: string
 }
 
-type ColorSwatchStyle = React.CSSProperties & {
-  '--color-swatch': string
-}
-
 function ColorSwatch({ color, className, ...props }: ColorSwatchProps) {
-  const style: ColorSwatchStyle = { '--color-swatch': color }
-
   return (
     <span
       aria-hidden="true"
@@ -24,7 +18,7 @@ function ColorSwatch({ color, className, ...props }: ColorSwatchProps) {
         'size-2 shrink-0 rounded-full bg-(--color-swatch)',
         className,
       )}
-      style={style}
+      style={colorSwatchStyle(color)}
       {...props}
     />
   )

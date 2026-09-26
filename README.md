@@ -25,6 +25,8 @@ Import components from their subpaths:
 
 ```tsx
 import { Button } from '@fohte/ui/button'
+import { ColorSwatch } from '@fohte/ui/color-swatch'
+import { ColorSwatchPicker } from '@fohte/ui/color-swatch-picker'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
 import { Input } from '@fohte/ui/input'
 import {
