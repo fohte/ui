@@ -37,6 +37,7 @@ import {
   SelectValue,
 } from '@fohte/ui/select'
 import { SegmentedControl } from '@fohte/ui/segmented-control'
+import { Tabs, TabsList, TabsPanel, TabsTab } from '@fohte/ui/tabs'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 ```
 
