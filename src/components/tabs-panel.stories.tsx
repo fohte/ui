@@ -5,6 +5,7 @@ import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: TabsPanel,
+  args: { value: 'summary' },
 } satisfies Meta<typeof TabsPanel>
 
 export default meta
