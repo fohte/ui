@@ -1,5 +1,5 @@
 import { CheckIcon } from 'lucide-react'
-import { createContext, type ReactNode, useContext } from 'react'
+import { createContext, type HTMLAttributes, useContext } from 'react'
 
 import { cn } from '#utils'
 
@@ -7,57 +7,44 @@ type ListRole = 'list' | 'listbox'
 
 const ListRoleContext = createContext<ListRole | null>(null)
 
-type ListProps = {
-  children?: ReactNode
-  id?: string
-  role?: ListRole
-  'aria-label'?: string
-  'aria-labelledby'?: string
-}
+type ListProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'className' | 'role' | 'style'
+> & { role?: ListRole }
 
-function List({
-  children,
-  id,
-  role = 'list',
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
-}: ListProps) {
+function List({ children, role = 'list', ...props }: ListProps) {
   return (
     <ListRoleContext.Provider value={role}>
-      <div
-        id={id}
-        role={role}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        data-slot="list"
-        className="flex flex-col"
-      >
+      <div {...props} role={role} data-slot="list" className="flex flex-col">
         {children}
       </div>
     </ListRoleContext.Provider>
   )
 }
 
-type ListItemProps = {
-  children?: ReactNode
-  id?: string
+type ListItemProps = Omit<
+  HTMLAttributes<HTMLElement>,
+  | 'aria-pressed'
+  | 'aria-selected'
+  | 'className'
+  | 'onClick'
+  | 'onMouseDown'
+  | 'role'
+  | 'style'
+> & {
   highlighted?: boolean
   selected?: boolean
   indent?: number
   onSelect?: () => void
-  'aria-label'?: string
-  'aria-labelledby'?: string
 }
 
 function ListItem({
   children,
-  id,
   highlighted = false,
   selected = false,
   indent = 0,
   onSelect,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
+  ...props
 }: ListItemProps) {
   const role = useContext(ListRoleContext)
   const className = cn(
@@ -67,7 +54,9 @@ function ListItem({
   const style =
     indent === 0
       ? undefined
-      : { paddingInlineStart: `calc(0.75rem + ${String(indent)}rem)` }
+      : {
+          paddingInlineStart: `calc(var(--spacing) * 3 + ${String(indent)}rem)`,
+        }
   const content = (
     <>
       {children}
@@ -76,20 +65,21 @@ function ListItem({
       )}
     </>
   )
+  const commonProps = {
+    ...props,
+    'data-slot': 'list-item',
+    'data-highlighted': highlighted ? '' : undefined,
+    'data-selected': selected ? '' : undefined,
+    className,
+    style,
+  }
 
   if (role === 'listbox') {
     return (
       <div
-        id={id}
+        {...commonProps}
         role="option"
         aria-selected={selected}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        data-slot="list-item"
-        data-highlighted={highlighted ? '' : undefined}
-        data-selected={selected ? '' : undefined}
-        className={className}
-        style={style}
         onMouseDown={(event) => {
           event.preventDefault()
         }}
@@ -102,15 +92,9 @@ function ListItem({
 
   const button = (
     <button
-      id={id}
+      {...commonProps}
       type="button"
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      data-slot="list-item"
-      data-highlighted={highlighted ? '' : undefined}
-      data-selected={selected ? '' : undefined}
-      className={className}
-      style={style}
+      aria-pressed={selected}
       onClick={onSelect}
     >
       {content}

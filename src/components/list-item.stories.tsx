@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { List, ListItem } from '#components/list'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: ListItem,
@@ -10,7 +11,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  name: 'the row shows its label without a divider',
+  name: 'the row shows its label on a plain background',
   render: () => <ListItem>First option</ListItem>,
 }
 
@@ -36,7 +37,7 @@ export const Indented: Story = {
 }
 
 export const ListboxOption: Story = {
-  name: 'the row exposes its selected state as a listbox option',
+  name: 'the listbox marks the second option with a check',
   render: () => (
     <List role="listbox" aria-label="Choose an option">
       <ListItem id="first-option">First option</ListItem>
@@ -46,3 +47,33 @@ export const ListboxOption: Story = {
     </List>
   ),
 }
+
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the row shows its label on a plain background in dark mode',
+)
+
+export const HoverDark: Story = inDarkMode(
+  Hover,
+  'the row changes background on hover in dark mode',
+)
+
+export const HighlightedDark: Story = inDarkMode(
+  Highlighted,
+  'the highlighted row uses the accent colors in dark mode',
+)
+
+export const SelectedDark: Story = inDarkMode(
+  Selected,
+  'the selected row shows a check at the end in dark mode',
+)
+
+export const IndentedDark: Story = inDarkMode(
+  Indented,
+  'the row moves right for a nested level in dark mode',
+)
+
+export const ListboxOptionDark: Story = inDarkMode(
+  ListboxOption,
+  'the listbox marks the second option with a check in dark mode',
+)

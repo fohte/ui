@@ -27,6 +27,7 @@ Import components from their subpaths:
 import { Button } from '@fohte/ui/button'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
 import { Input } from '@fohte/ui/input'
+import { List, ListItem } from '@fohte/ui/list'
 import {
   Select,
   SelectContent,

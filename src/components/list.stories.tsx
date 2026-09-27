@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { List, ListItem } from '#components/list'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: List,
@@ -20,7 +21,7 @@ export const Default: Story = {
 }
 
 export const Listbox: Story = {
-  name: 'the listbox exposes its options to an active descendant',
+  name: 'the listbox highlights the second option',
   args: {
     role: 'listbox',
     id: 'example-listbox',
@@ -35,3 +36,13 @@ export const Listbox: Story = {
     </List>
   ),
 }
+
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the list stacks selectable rows in dark mode',
+)
+
+export const ListboxDark: Story = inDarkMode(
+  Listbox,
+  'the listbox highlights the second option in dark mode',
+)
