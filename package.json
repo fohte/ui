@@ -14,15 +14,20 @@
     "./button": "./src/components/button.tsx",
     "./dialog": "./src/components/dialog.tsx",
     "./input": "./src/components/input.tsx",
+    "./panel": "./src/components/panel.tsx",
+    "./popover": "./src/components/popover.tsx",
     "./select": "./src/components/select.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
     "tokens.css",
+    "src/padding.ts",
     "src/utils.ts",
     "src/components/button.tsx",
     "src/components/dialog.tsx",
     "src/components/input.tsx",
+    "src/components/panel.tsx",
+    "src/components/popover.tsx",
     "src/components/select.tsx",
     "src/components/tooltip.tsx"
   ],
