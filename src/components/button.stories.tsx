@@ -120,34 +120,31 @@ export const PlainColors: Story = {
       { label: 'Move down', icon: <ArrowDownIcon /> },
       { label: 'Add item', icon: <PlusIcon /> },
     ]
+    const rows = [
+      { label: 'Default', className: undefined },
+      { label: 'Hover', className: 'text-destructive' },
+    ]
 
     return (
       <div className="flex flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2">
-          <span className="w-12 text-muted-foreground">Default</span>
-          {actions.map(({ label, icon }) => (
-            <Button key={label} variant="plain" aria-label={label}>
-              {icon}
+        {rows.map(({ label, className }) => (
+          <div key={label} className="flex items-center gap-2">
+            <span className="w-12 text-muted-foreground">{label}</span>
+            {actions.map(({ label: actionLabel, icon }) => (
+              <Button
+                key={actionLabel}
+                variant="plain"
+                className={className}
+                aria-label={actionLabel}
+              >
+                {icon}
+              </Button>
+            ))}
+            <Button variant="plain" className={className}>
+              +3 more
             </Button>
-          ))}
-          <Button variant="plain">+3 more</Button>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-12 text-muted-foreground">Hover</span>
-          {actions.map(({ label, icon }) => (
-            <Button
-              key={label}
-              variant="plain"
-              data-hovered="true"
-              aria-label={label}
-            >
-              {icon}
-            </Button>
-          ))}
-          <Button variant="plain" data-hovered="true">
-            +3 more
-          </Button>
-        </div>
+          </div>
+        ))}
       </div>
     )
   },
