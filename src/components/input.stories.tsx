@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ComponentProps } from 'react'
 
 import { Input } from '#components/input'
 import { inDarkMode } from '#storybook-utils'
@@ -10,6 +11,17 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+function GhostInput({
+  hovered = false,
+  ...props
+}: ComponentProps<typeof Input> & { hovered?: boolean }) {
+  return (
+    <div className="p-2">
+      <Input {...props} data-hovered={hovered ? '' : undefined} />
+    </div>
+  )
+}
 
 export const Default: Story = {
   name: 'an empty input shows its placeholder text.',
@@ -28,6 +40,30 @@ export const Disabled: Story = {
 export const Invalid: Story = {
   name: 'an input shows its invalid state with its placeholder text.',
   args: { 'aria-invalid': true },
+}
+
+export const Ghost: Story = {
+  name: 'a ghost input has a transparent border and background.',
+  args: { variant: 'ghost' },
+  render: (args) => <GhostInput {...args} />,
+}
+
+export const GhostHovered: Story = {
+  name: 'a hovered ghost input highlights its background.',
+  args: { variant: 'ghost' },
+  render: (args) => <GhostInput {...args} hovered />,
+}
+
+export const GhostFocused: Story = {
+  name: 'a focused ghost input shows its underline.',
+  args: { variant: 'ghost', autoFocus: true },
+  render: (args) => <GhostInput {...args} />,
+}
+
+export const GhostInvalid: Story = {
+  name: 'a focused invalid ghost input shows its destructive underline.',
+  args: { variant: 'ghost', 'aria-invalid': true, autoFocus: true },
+  render: (args) => <GhostInput {...args} />,
 }
 
 export const File: Story = {
@@ -53,6 +89,26 @@ export const DisabledDark: Story = inDarkMode(
 export const InvalidDark: Story = inDarkMode(
   Invalid,
   'an invalid input shows its placeholder in dark mode.',
+)
+
+export const GhostDark: Story = inDarkMode(
+  Ghost,
+  'a ghost input has a transparent border and background in dark mode.',
+)
+
+export const GhostHoveredDark: Story = inDarkMode(
+  GhostHovered,
+  'a hovered ghost input highlights its background in dark mode.',
+)
+
+export const GhostFocusedDark: Story = inDarkMode(
+  GhostFocused,
+  'a focused ghost input shows its underline in dark mode.',
+)
+
+export const GhostInvalidDark: Story = inDarkMode(
+  GhostInvalid,
+  'a focused invalid ghost input shows its destructive underline in dark mode.',
 )
 
 export const FileDark: Story = inDarkMode(
