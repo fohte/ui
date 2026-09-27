@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
+  ArrowDownIcon,
   ArrowRightIcon,
+  ArrowUpIcon,
   DownloadIcon,
   PlusIcon,
   SearchIcon,
+  XIcon,
 } from 'lucide-react'
 
 import { Button } from '#components/button'
@@ -108,6 +111,48 @@ export const PlainSizes: Story = {
   ),
 }
 
+export const PlainColors: Story = {
+  name: 'plain actions use muted text by default and destructive text on hover.',
+  render: () => {
+    const actions = [
+      { label: 'Remove tag', icon: <XIcon /> },
+      { label: 'Move up', icon: <ArrowUpIcon /> },
+      { label: 'Move down', icon: <ArrowDownIcon /> },
+      { label: 'Add item', icon: <PlusIcon /> },
+    ]
+
+    return (
+      <div className="flex flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-muted-foreground">Default</span>
+          {actions.map(({ label, icon }) => (
+            <Button key={label} variant="plain" aria-label={label}>
+              {icon}
+            </Button>
+          ))}
+          <Button variant="plain">+3 more</Button>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-12 text-muted-foreground">Hover</span>
+          {actions.map(({ label, icon }) => (
+            <Button
+              key={label}
+              variant="plain"
+              data-hovered="true"
+              aria-label={label}
+            >
+              {icon}
+            </Button>
+          ))}
+          <Button variant="plain" data-hovered="true">
+            +3 more
+          </Button>
+        </div>
+      </div>
+    )
+  },
+}
+
 export const DefaultDark: Story = inDarkMode(
   Default,
   'the default button uses dark theme colors.',
@@ -141,4 +186,9 @@ export const PlainIconDark: Story = inDarkMode(
 export const PlainSizesDark: Story = inDarkMode(
   PlainSizes,
   'plain text keeps its inherited size across button sizes in dark mode.',
+)
+
+export const PlainColorsDark: Story = inDarkMode(
+  PlainColors,
+  'plain actions use muted text by default and destructive text on hover in dark mode.',
 )

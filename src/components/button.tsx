@@ -6,6 +6,8 @@ import { cn } from '#utils'
 const buttonBaseClasses =
   "group/button inline-flex shrink-0 items-center justify-center outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
+const plainButtonClasses = `${buttonBaseClasses} text-muted-foreground hover:text-destructive data-[hovered=true]:text-destructive`
+
 const buttonVariants = cva(
   `${buttonBaseClasses} rounded-lg border border-transparent bg-clip-padding text-sm font-mono font-medium whitespace-nowrap transition-all focus-visible:border-ring active:translate-y-px aria-invalid:border-destructive/50`,
   {
@@ -57,7 +59,7 @@ function Button({
 }) {
   // Plain inherits typography and should not regain size-specific button geometry.
   const classes =
-    variant === 'plain' ? buttonBaseClasses : buttonVariants({ variant, size })
+    variant === 'plain' ? plainButtonClasses : buttonVariants({ variant, size })
 
   return (
     <ButtonPrimitive
