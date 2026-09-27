@@ -36,6 +36,11 @@ export const SpaciousSelected: Story = {
   args: { value: 'spacious' },
 }
 
+export const Disabled: Story = {
+  name: 'all options appear disabled.',
+  args: { value: 'compact', disabled: true },
+}
+
 export const CompactSelectedDark: Story = inDarkMode(
   CompactSelected,
   'the compact option appears selected in dark mode.',
