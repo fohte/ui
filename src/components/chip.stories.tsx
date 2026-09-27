@@ -29,7 +29,7 @@ export const Faint: Story = {
 
 export const Small: Story = {
   name: 'a small chip has compact horizontal padding.',
-  args: { size: 'sm' },
+  args: { size: 'sm', children: 'Small' },
 }
 
 export const Medium: Story = {
@@ -60,7 +60,7 @@ export const WithColorDot: Story = {
 
 export const AsButton: Story = {
   name: 'a chip can be rendered as a button.',
-  args: { as: 'button', onClick: fn() },
+  args: { as: 'button', children: 'Filter', onClick: fn() },
 }
 
 export const MutedDark: Story = inDarkMode(
