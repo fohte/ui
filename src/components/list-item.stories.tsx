@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ReactNode } from 'react'
 
 import { List, ListItem } from '#components/list'
 import { inDarkMode } from '#storybook-utils'
@@ -10,21 +11,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+function PaddedStory({ children }: { children: ReactNode }) {
+  // Keep the row away from the viewport origin where screenshot capture may hover.
+  return <div className="p-2">{children}</div>
+}
+
 export const Default: Story = {
   name: 'the row shows its label on a plain background',
   render: () => (
-    <div className="p-2">
+    <PaddedStory>
       <ListItem>First option</ListItem>
-    </div>
+    </PaddedStory>
   ),
 }
 
 export const Hover: Story = {
   name: 'the row changes background on hover',
   render: () => (
-    <div className="p-2">
+    <PaddedStory>
       <ListItem data-hovered="">First option</ListItem>
-    </div>
+    </PaddedStory>
   ),
 }
 
