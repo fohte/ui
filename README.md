@@ -28,6 +28,8 @@ import { Button } from '@fohte/ui/button'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
 import { Input } from '@fohte/ui/input'
 import { List, ListItem } from '@fohte/ui/list'
+import { Panel } from '@fohte/ui/panel'
+import { Popover, PopoverContent, PopoverTrigger } from '@fohte/ui/popover'
 import {
   Select,
   SelectContent,
