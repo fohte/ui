@@ -1,9 +1,9 @@
 'use client'
 
 import { Popover as PopoverPrimitive } from '@base-ui/react/popover'
-import { cva } from 'class-variance-authority'
 import * as React from 'react'
 
+import { type Padding, paddingVariants } from '#padding'
 import { cn } from '#utils'
 
 type PopoverAnchor = React.RefObject<Element | null>
@@ -11,19 +11,6 @@ type PopoverAnchor = React.RefObject<Element | null>
 const PopoverAnchorContext = React.createContext<PopoverAnchor | undefined>(
   undefined,
 )
-
-const popoverContentVariants = cva('', {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'px-3 py-1.5',
-      md: 'p-3',
-    },
-  },
-  defaultVariants: {
-    padding: 'md',
-  },
-})
 
 function Popover({
   anchor,
@@ -43,6 +30,7 @@ function Popover({
       target instanceof Node &&
       anchor?.current?.contains(target) === true
     ) {
+      // Base UI considers the positioning anchor outside the popup.
       eventDetails.cancel()
       return
     }
@@ -78,7 +66,7 @@ function PopoverContent({
     PopoverPrimitive.Positioner.Props,
     'align' | 'alignOffset' | 'side' | 'sideOffset'
   > & {
-    padding?: 'none' | 'sm' | 'md'
+    padding?: Padding
   }) {
   const anchor = React.useContext(PopoverAnchorContext)
 
@@ -96,7 +84,7 @@ function PopoverContent({
           data-slot="popover-content"
           className={cn(
             'z-50 max-w-(--available-width) rounded-md border border-border bg-popover font-mono shadow-md',
-            popoverContentVariants({ padding }),
+            paddingVariants({ padding }),
             className,
           )}
           {...props}

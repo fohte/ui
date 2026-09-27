@@ -3,6 +3,8 @@ import { useRef } from 'react'
 
 import { Button } from '#components/button'
 import { Popover, PopoverContent, PopoverTrigger } from '#components/popover'
+import type { Padding } from '#padding'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: PopoverContent,
@@ -11,43 +13,33 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const TriggerWithoutPadding: Story = {
-  name: 'the trigger popover has no inner padding',
-  render: () => (
+function TriggerPopover({ padding }: { padding: Padding }) {
+  return (
     <Popover open>
       <PopoverTrigger render={<Button variant="outline" />}>
         Open menu
       </PopoverTrigger>
-      <PopoverContent padding="none">Menu content</PopoverContent>
+      <PopoverContent padding={padding}>Menu content</PopoverContent>
     </Popover>
-  ),
+  )
+}
+
+export const TriggerWithoutPadding: Story = {
+  name: 'the trigger popover has no inner padding',
+  render: () => <TriggerPopover padding="none" />,
 }
 
 export const TriggerSmallPadding: Story = {
   name: 'the trigger popover uses compact padding',
-  render: () => (
-    <Popover open>
-      <PopoverTrigger render={<Button variant="outline" />}>
-        Open menu
-      </PopoverTrigger>
-      <PopoverContent padding="sm">Menu content</PopoverContent>
-    </Popover>
-  ),
+  render: () => <TriggerPopover padding="sm" />,
 }
 
 export const TriggerMediumPadding: Story = {
   name: 'the trigger popover uses comfortable padding',
-  render: () => (
-    <Popover open>
-      <PopoverTrigger render={<Button variant="outline" />}>
-        Open menu
-      </PopoverTrigger>
-      <PopoverContent padding="md">Menu content</PopoverContent>
-    </Popover>
-  ),
+  render: () => <TriggerPopover padding="md" />,
 }
 
-function AnchoredPopover({ padding }: { padding: 'none' | 'sm' | 'md' }) {
+function AnchoredPopover({ padding }: { padding: Padding }) {
   const anchorRef = useRef<HTMLButtonElement>(null)
 
   return (
@@ -76,3 +68,33 @@ export const AnchorMediumPadding: Story = {
   name: 'the anchored popover uses comfortable padding',
   render: () => <AnchoredPopover padding="md" />,
 }
+
+export const TriggerWithoutPaddingDark: Story = inDarkMode(
+  TriggerWithoutPadding,
+  'the trigger popover has no inner padding in dark mode',
+)
+
+export const TriggerSmallPaddingDark: Story = inDarkMode(
+  TriggerSmallPadding,
+  'the trigger popover uses compact padding in dark mode',
+)
+
+export const TriggerMediumPaddingDark: Story = inDarkMode(
+  TriggerMediumPadding,
+  'the trigger popover uses comfortable padding in dark mode',
+)
+
+export const AnchorWithoutPaddingDark: Story = inDarkMode(
+  AnchorWithoutPadding,
+  'the anchored popover has no inner padding in dark mode',
+)
+
+export const AnchorSmallPaddingDark: Story = inDarkMode(
+  AnchorSmallPadding,
+  'the anchored popover uses compact padding in dark mode',
+)
+
+export const AnchorMediumPaddingDark: Story = inDarkMode(
+  AnchorMediumPadding,
+  'the anchored popover uses comfortable padding in dark mode',
+)

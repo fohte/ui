@@ -21,6 +21,7 @@
   },
   "files": [
     "tokens.css",
+    "src/padding.ts",
     "src/utils.ts",
     "src/components/button.tsx",
     "src/components/dialog.tsx",

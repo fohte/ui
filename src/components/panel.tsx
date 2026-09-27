@@ -1,32 +1,23 @@
-import { cva } from 'class-variance-authority'
 import type { ComponentProps } from 'react'
 
+import { type Padding, paddingVariants } from '#padding'
 import { cn } from '#utils'
-
-const panelVariants = cva('border border-border', {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'px-3 py-1.5',
-      md: 'p-3',
-    },
-  },
-  defaultVariants: {
-    padding: 'md',
-  },
-})
 
 function Panel({
   className,
   padding = 'md',
   ...props
 }: ComponentProps<'div'> & {
-  padding?: 'none' | 'sm' | 'md'
+  padding?: Padding
 }) {
   return (
     <div
       data-slot="panel"
-      className={cn(panelVariants({ padding }), className)}
+      className={cn(
+        'border border-border',
+        paddingVariants({ padding }),
+        className,
+      )}
       {...props}
     />
   )

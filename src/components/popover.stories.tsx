@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '#components/button'
 import { Popover, PopoverContent, PopoverTrigger } from '#components/popover'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: Popover,
@@ -33,3 +34,13 @@ export const Open: Story = {
     </Popover>
   ),
 }
+
+export const ClosedDark: Story = inDarkMode(
+  Closed,
+  'the closed popover shows its trigger button in dark mode',
+)
+
+export const OpenDark: Story = inDarkMode(
+  Open,
+  'the open popover shows content below its trigger button in dark mode',
+)

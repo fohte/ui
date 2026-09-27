@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '#components/button'
 import { Popover, PopoverContent, PopoverTrigger } from '#components/popover'
+import { inDarkMode } from '#storybook-utils'
 
 const meta = {
   component: PopoverTrigger,
@@ -21,3 +22,8 @@ export const Default: Story = {
     </Popover>
   ),
 }
+
+export const DefaultDark: Story = inDarkMode(
+  Default,
+  'the outline button opens a menu popover in dark mode',
+)
