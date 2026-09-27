@@ -275,9 +275,6 @@ importers:
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.3.0)(prettier@3.9.8)(react@19.3.0)
-      storybook-addon-pseudo-states:
-        specifier: 10.6.0
-        version: 10.6.0(storybook@10.6.0(@types/react@19.3.0)(prettier@3.9.8)(react@19.3.0))
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -4296,11 +4293,6 @@ packages:
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
     engines: {node: '>=18'}
-
-  storybook-addon-pseudo-states@10.6.0:
-    resolution: {integrity: sha512-9jnKzeyMjvkKXpK/TxKuam6mrFLsnCM/g4nSmkM49ssBy/RfjHt3dOdTjRCF++r3as7lHntWNv1J4shJJJlEfQ==}
-    peerDependencies:
-      storybook: ^10.6.0
 
   storybook@10.6.0:
     resolution: {integrity: sha512-H48X6AURAFTpfN2zEux6vNesee5Oq8Gxj1IanYmblPZ218sfKSeyyerF1NC7GD7BrruoC8L4/cU0zII4y+d6zw==}
@@ -8773,10 +8765,6 @@ snapshots:
   std-env@4.2.0: {}
 
   stdin-discarder@0.2.2: {}
-
-  storybook-addon-pseudo-states@10.6.0(storybook@10.6.0(@types/react@19.3.0)(prettier@3.9.8)(react@19.3.0)):
-    dependencies:
-      storybook: 10.6.0(@types/react@19.3.0)(prettier@3.9.8)(react@19.3.0)
 
   storybook@10.6.0(@types/react@19.3.0)(prettier@3.9.8)(react@19.3.0):
     dependencies:

@@ -17,8 +17,7 @@ export const Default: Story = {
 
 export const Hover: Story = {
   name: 'the row changes background on hover',
-  render: () => <ListItem>First option</ListItem>,
-  parameters: { pseudo: { hover: true } },
+  render: () => <ListItem data-hovered="">First option</ListItem>,
 }
 
 export const Highlighted: Story = {

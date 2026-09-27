@@ -48,7 +48,7 @@ function ListItem({
 }: ListItemProps) {
   const role = useContext(ListRoleContext)
   const className = cn(
-    'flex min-h-9 w-full items-center gap-2 px-3 text-left text-sm hover:bg-accent/50 pointer-coarse:min-h-11 focus-visible:outline-2 focus-visible:outline-ring',
+    'flex min-h-9 w-full items-center gap-2 px-3 text-left text-sm hover:bg-accent/50 data-[hovered]:bg-accent/50 pointer-coarse:min-h-11 focus-visible:outline-2 focus-visible:outline-ring',
     highlighted && 'bg-accent text-accent-foreground hover:bg-accent',
   )
   const style =

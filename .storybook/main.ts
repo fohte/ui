@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     '@storybook/addon-vitest',
     '@fohte/storybook-addon',
-    'storybook-addon-pseudo-states',
   ],
   viteFinal: (config) => {
     config.plugins ??= []
