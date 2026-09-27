@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
+  ArrowDownIcon,
   ArrowRightIcon,
+  ArrowUpIcon,
   DownloadIcon,
   PlusIcon,
   SearchIcon,
+  XIcon,
 } from 'lucide-react'
 
 import { Button } from '#components/button'
@@ -31,6 +34,7 @@ export const Variants: Story = {
       <Button variant="ghost">Ghost</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="link">Link</Button>
+      <Button variant="plain">Plain</Button>
     </div>
   ),
 }
@@ -64,6 +68,88 @@ export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
 }
 
+export const PlainText: Story = {
+  name: 'plain text sits inline with surrounding copy.',
+  args: { variant: 'plain', children: 'Edit' },
+  render: (args) => (
+    <p className="text-sm">
+      Update your preferences <Button {...args} /> when needed.
+    </p>
+  ),
+}
+
+export const PlainIcon: Story = {
+  name: 'a plain icon action has no button box.',
+  args: {
+    variant: 'plain',
+    'aria-label': 'Add item',
+    children: <PlusIcon />,
+  },
+}
+
+export const PlainSizes: Story = {
+  name: 'plain text keeps its inherited size across button sizes.',
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2 text-sm">
+      {(
+        [
+          'default',
+          'xs',
+          'sm',
+          'lg',
+          'icon',
+          'icon-xs',
+          'icon-sm',
+          'icon-lg',
+        ] as const
+      ).map((size) => (
+        <Button key={size} variant="plain" size={size}>
+          {size}
+        </Button>
+      ))}
+    </div>
+  ),
+}
+
+export const PlainColors: Story = {
+  name: 'plain actions use muted text by default and destructive text on hover.',
+  render: () => {
+    const actions = [
+      { label: 'Remove tag', icon: <XIcon /> },
+      { label: 'Move up', icon: <ArrowUpIcon /> },
+      { label: 'Move down', icon: <ArrowDownIcon /> },
+      { label: 'Add item', icon: <PlusIcon /> },
+    ]
+    const rows = [
+      { label: 'Default', className: undefined },
+      { label: 'Hover', className: 'text-destructive' },
+    ]
+
+    return (
+      <div className="flex flex-col gap-2 text-sm">
+        {rows.map(({ label, className }) => (
+          <div key={label} className="flex items-center gap-2">
+            <span className="w-12 text-muted-foreground">{label}</span>
+            {actions.map(({ label: actionLabel, icon }) => (
+              <Button
+                key={actionLabel}
+                variant="plain"
+                className={className}
+                aria-label={actionLabel}
+              >
+                {icon}
+              </Button>
+            ))}
+            <Button variant="plain" className={className}>
+              +3 more
+            </Button>
+          </div>
+        ))}
+      </div>
+    )
+  },
+}
+
 export const DefaultDark: Story = inDarkMode(
   Default,
   'the default button uses dark theme colors.',
@@ -82,4 +168,24 @@ export const SizesDark: Story = inDarkMode(
 export const DisabledDark: Story = inDarkMode(
   Disabled,
   'the disabled button appears with dark theme colors.',
+)
+
+export const PlainTextDark: Story = inDarkMode(
+  PlainText,
+  'plain text sits inline with surrounding copy in dark mode.',
+)
+
+export const PlainIconDark: Story = inDarkMode(
+  PlainIcon,
+  'a plain icon action has no button box in dark mode.',
+)
+
+export const PlainSizesDark: Story = inDarkMode(
+  PlainSizes,
+  'plain text keeps its inherited size across button sizes in dark mode.',
+)
+
+export const PlainColorsDark: Story = inDarkMode(
+  PlainColors,
+  'plain actions use muted text by default and destructive text on hover in dark mode.',
 )
