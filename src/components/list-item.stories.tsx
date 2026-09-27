@@ -12,12 +12,20 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   name: 'the row shows its label on a plain background',
-  render: () => <ListItem>First option</ListItem>,
+  render: () => (
+    <div className="p-2">
+      <ListItem>First option</ListItem>
+    </div>
+  ),
 }
 
 export const Hover: Story = {
   name: 'the row changes background on hover',
-  render: () => <ListItem data-hovered="">First option</ListItem>,
+  render: () => (
+    <div className="p-2">
+      <ListItem data-hovered="">First option</ListItem>
+    </div>
+  ),
 }
 
 export const Highlighted: Story = {
