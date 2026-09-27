@@ -17,6 +17,7 @@
     "./panel": "./src/components/panel.tsx",
     "./popover": "./src/components/popover.tsx",
     "./select": "./src/components/select.tsx",
+    "./segmented-control": "./src/components/segmented-control.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
@@ -29,6 +30,7 @@
     "src/components/panel.tsx",
     "src/components/popover.tsx",
     "src/components/select.tsx",
+    "src/components/segmented-control.tsx",
     "src/components/tooltip.tsx"
   ],
   "publishConfig": {

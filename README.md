@@ -36,6 +36,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@fohte/ui/select'
+import { SegmentedControl } from '@fohte/ui/segmented-control'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 ```
 
