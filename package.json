@@ -12,6 +12,7 @@
   "exports": {
     "./tokens.css": "./tokens.css",
     "./button": "./src/components/button.tsx",
+    "./chip": "./src/components/chip.tsx",
     "./dialog": "./src/components/dialog.tsx",
     "./input": "./src/components/input.tsx",
     "./list": "./src/components/list.tsx",
@@ -27,6 +28,7 @@
     "src/padding.ts",
     "src/utils.ts",
     "src/components/button.tsx",
+    "src/components/chip.tsx",
     "src/components/dialog.tsx",
     "src/components/input.tsx",
     "src/components/list.tsx",
