@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   name: 'the heading and close control sit in a bordered header bar',
   render: () => (
-    <DialogHeaderBar className="w-96">
+    <DialogHeaderBar className="w-full max-w-96">
       <span>Dialog heading</span>
       <Button size="icon-xs" variant="ghost" aria-label="Close">
         ×

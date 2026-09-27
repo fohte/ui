@@ -38,6 +38,15 @@ jobs:
     needs: detect-changes-root
     if: needs.detect-changes-root.outputs.changed == 'true'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          # The capture action strips screenshots-dir from artifact paths.
+          # This keeps existing desktop keys while placing mobile under its own prefix.
+          - project: storybook-screenshot-ui
+            screenshots_dir: __screenshots__/desktop
+          - project: storybook-screenshot-ui-mobile
+            screenshots_dir: __screenshots__
     permissions:
       contents: read
     steps:
@@ -72,12 +81,12 @@ jobs:
       # vitest.screenshot.config.ts.
       - uses: fohte/storybook-vrt-workflows/vrt-capture@691148d6e8e53b86c8f93b5b54cadbd8308b06d3 # v0.1.6
         with:
-          project: storybook-screenshot-ui
+          project: ${{ matrix.project }}
           shard: 1
           shards: 1
           capture-script: storybook:screenshot
           package-dir: .
-          screenshots-dir: __screenshots__/desktop
+          screenshots-dir: ${{ matrix.screenshots_dir }}
 
   report-root:
     needs: capture-root
@@ -122,7 +131,7 @@ jobs:
       - uses: fohte/storybook-vrt-workflows/vrt-report@691148d6e8e53b86c8f93b5b54cadbd8308b06d3 # v0.1.6
         with:
           package-dir: .
-          screenshots-dir: __screenshots__/desktop
+          screenshots-dir: __screenshots__
           r2-bucket: ui-vrt
           github-token: ${{ secrets.GITHUB_TOKEN }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
