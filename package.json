@@ -19,6 +19,7 @@
     "./popover": "./src/components/popover.tsx",
     "./select": "./src/components/select.tsx",
     "./segmented-control": "./src/components/segmented-control.tsx",
+    "./tabs": "./src/components/tabs.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
@@ -33,6 +34,7 @@
     "src/components/popover.tsx",
     "src/components/select.tsx",
     "src/components/segmented-control.tsx",
+    "src/components/tabs.tsx",
     "src/components/tooltip.tsx"
   ],
   "publishConfig": {
