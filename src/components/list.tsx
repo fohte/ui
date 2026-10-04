@@ -50,13 +50,8 @@ function ListItem({
   const className = cn(
     'flex min-h-9 w-full items-center gap-2 px-3 text-left text-sm hover:bg-accent/50 data-[hovered]:bg-accent/50 pointer-coarse:min-h-11 focus-visible:outline-2 focus-visible:outline-ring',
     highlighted && 'bg-accent text-accent-foreground hover:bg-accent',
+    indent > 0 && 'ps-7',
   )
-  const style =
-    indent === 0
-      ? undefined
-      : {
-          paddingInlineStart: `calc(var(--spacing) * 3 + ${String(indent)}rem)`,
-        }
   const content = (
     <>
       {children}
@@ -70,8 +65,8 @@ function ListItem({
     'data-slot': 'list-item',
     'data-highlighted': highlighted ? '' : undefined,
     'data-selected': selected ? '' : undefined,
+    'data-indent': indent > 0 ? `${String(indent)}rem` : undefined,
     className,
-    style,
   }
 
   if (role === 'listbox') {
