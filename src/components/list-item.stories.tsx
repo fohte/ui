@@ -45,8 +45,16 @@ export const Selected: Story = {
 }
 
 export const Indented: Story = {
-  name: 'the row moves right for a nested level',
-  args: { indent: 1, children: 'Nested option' },
+  name: 'nested rows move farther right at deeper levels',
+  render: () => (
+    <PaddedStory>
+      <List>
+        <ListItem>First option</ListItem>
+        <ListItem indent={1}>Nested option</ListItem>
+        <ListItem indent={2}>Deeper nested option</ListItem>
+      </List>
+    </PaddedStory>
+  ),
 }
 
 export const ListboxOption: Story = {
@@ -83,7 +91,7 @@ export const SelectedDark: Story = inDarkMode(
 
 export const IndentedDark: Story = inDarkMode(
   Indented,
-  'the row moves right for a nested level in dark mode',
+  'nested rows move farther right at deeper levels in dark mode',
 )
 
 export const ListboxOptionDark: Story = inDarkMode(

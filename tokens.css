@@ -180,8 +180,6 @@
   );
 }
 
-[data-slot='list-item'][data-indent] {
-  padding-inline-start: calc(
-    var(--spacing) * 3 + attr(data-indent type(<length>), 0px)
-  );
+[data-slot='list-item'] {
+  padding-inline-start: calc(var(--spacing) * 3 + var(--list-item-indent, 0px));
 }
