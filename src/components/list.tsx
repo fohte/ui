@@ -1,5 +1,10 @@
 import { CheckIcon } from 'lucide-react'
-import { createContext, type HTMLAttributes, useContext } from 'react'
+import {
+  createContext,
+  type CSSProperties,
+  type HTMLAttributes,
+  useContext,
+} from 'react'
 
 import { cn } from '#utils'
 
@@ -66,7 +71,7 @@ function ListItem({
     'data-selected': selected ? '' : undefined,
     style: {
       '--list-item-indent': indent > 0 ? `${String(indent)}rem` : '0px',
-    },
+    } as CSSProperties & { '--list-item-indent': string },
     className,
   }
 
