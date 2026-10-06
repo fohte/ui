@@ -50,13 +50,13 @@ const colorTokens = [
 
 const TokenSwatches = () => (
   <main className="min-h-screen bg-background p-8 font-sans text-foreground">
-    <h1 className="mb-2 text-2xl">Design tokens</h1>
+    <h1 className="mb-2 text-2xl leading-normal">Design tokens</h1>
     <p className="mb-6">
       Light and dark palettes, type scale, and radius values.
     </p>
 
     <section aria-label="Color tokens">
-      <h2 className="mb-3 text-lg">Colors</h2>
+      <h2 className="mb-3 text-lg leading-normal">Colors</h2>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3">
         {colorTokens.map(([token, swatchClassName]) => (
           <div key={token} className="border border-border bg-card p-2">
@@ -64,14 +64,14 @@ const TokenSwatches = () => (
               aria-label={`--${token} swatch`}
               className={`h-11 border border-border-strong ${swatchClassName}`}
             />
-            <code className="mt-2 block text-xs">--{token}</code>
+            <code className="mt-2 block text-xs leading-normal">--{token}</code>
           </div>
         ))}
       </div>
     </section>
 
     <section aria-label="Type and radius tokens" className="mt-8">
-      <h2 className="mb-3 text-lg">Type and radius</h2>
+      <h2 className="mb-3 text-lg leading-normal">Type and radius</h2>
       <div className="flex flex-wrap gap-3">
         <div className="border border-border bg-card p-3 font-sans">
           --font-sans · Sample text
