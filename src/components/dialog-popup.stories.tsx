@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import {
-  Dialog,
-  DialogOverlay,
-  DialogPopup,
-  DialogPortal,
-} from '#components/dialog'
+import { Dialog, DialogContent, DialogPopup } from '#components/dialog'
 import { inDarkMode } from '#storybook-utils'
 
 const meta = {
@@ -19,12 +14,7 @@ export const Open: Story = {
   name: 'a centered popup appears above the dialog backdrop',
   render: () => (
     <Dialog open>
-      <DialogPortal>
-        <DialogOverlay />
-        <DialogPopup className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-background p-6 ring-1 ring-foreground/10">
-          Dialog content
-        </DialogPopup>
-      </DialogPortal>
+      <DialogContent>Dialog content</DialogContent>
     </Dialog>
   ),
 }

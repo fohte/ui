@@ -179,3 +179,7 @@
     calc(var(--spacing) * 36)
   );
 }
+
+[data-slot='list-item'] {
+  padding-inline-start: calc(var(--spacing) * 3 + var(--list-item-indent, 0px));
+}

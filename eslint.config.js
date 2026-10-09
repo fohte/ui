@@ -5,6 +5,7 @@ export default config(
   {
     typescript: { typeChecked: true },
     errorHandling: {},
+    shadcn: { files: ['src/**/*.{jsx,tsx}'] },
   },
   ...storybook.configs['flat/recommended'],
   {
@@ -24,5 +25,18 @@ export default config(
   {
     files: ['**/*.stories.tsx'],
     rules: { 'fohte/require-story-name': 'error' },
+  },
+  {
+    files: ['src/**/*.{jsx,tsx}'],
+    settings: {
+      shadcn: {
+        componentImports: ['^@fohte/ui(/|$)', '^#components/'],
+      },
+    },
+  },
+  {
+    files: ['src/components/*.tsx'],
+    ignores: ['src/components/*.stories.tsx'],
+    rules: { 'shadcn/no-restyle': 'off' },
   },
 )

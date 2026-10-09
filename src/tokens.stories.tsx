@@ -1,172 +1,94 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const colorTokens = [
-  'background',
-  'foreground',
-  'card',
-  'card-foreground',
-  'popover',
-  'popover-foreground',
-  'primary',
-  'primary-foreground',
-  'secondary',
-  'secondary-foreground',
-  'muted',
-  'muted-foreground',
-  'accent',
-  'accent-foreground',
-  'destructive',
-  'border',
-  'input',
-  'ring',
-  'sidebar',
-  'sidebar-foreground',
-  'sidebar-primary',
-  'sidebar-primary-foreground',
-  'sidebar-accent',
-  'sidebar-accent-foreground',
-  'sidebar-border',
-  'sidebar-ring',
-  'border-strong',
-  'surface-strong',
-  'muted-foreground-strong',
-  'muted-foreground-faint',
-  'muted-foreground-ghost',
-  'tint-red',
-  'tint-red-foreground',
-  'tint-orange',
-  'tint-orange-foreground',
-  'tint-yellow',
-  'tint-yellow-foreground',
-  'tint-green',
-  'tint-green-foreground',
-  'tint-cyan',
-  'tint-cyan-foreground',
-  'tint-blue',
-  'tint-blue-foreground',
-  'tint-magenta',
-  'tint-magenta-foreground',
+  ['background', 'bg-background'],
+  ['foreground', 'bg-foreground'],
+  ['card', 'bg-card'],
+  ['card-foreground', 'bg-card-foreground'],
+  ['popover', 'bg-popover'],
+  ['popover-foreground', 'bg-popover-foreground'],
+  ['primary', 'bg-primary'],
+  ['primary-foreground', 'bg-primary-foreground'],
+  ['secondary', 'bg-secondary'],
+  ['secondary-foreground', 'bg-secondary-foreground'],
+  ['muted', 'bg-muted'],
+  ['muted-foreground', 'bg-muted-foreground'],
+  ['accent', 'bg-accent'],
+  ['accent-foreground', 'bg-accent-foreground'],
+  ['destructive', 'bg-destructive'],
+  ['border', 'bg-border'],
+  ['input', 'bg-input'],
+  ['ring', 'bg-ring'],
+  ['sidebar', 'bg-sidebar'],
+  ['sidebar-foreground', 'bg-sidebar-foreground'],
+  ['sidebar-primary', 'bg-sidebar-primary'],
+  ['sidebar-primary-foreground', 'bg-sidebar-primary-foreground'],
+  ['sidebar-accent', 'bg-sidebar-accent'],
+  ['sidebar-accent-foreground', 'bg-sidebar-accent-foreground'],
+  ['sidebar-border', 'bg-sidebar-border'],
+  ['sidebar-ring', 'bg-sidebar-ring'],
+  ['border-strong', 'bg-border-strong'],
+  ['surface-strong', 'bg-surface-strong'],
+  ['muted-foreground-strong', 'bg-muted-foreground-strong'],
+  ['muted-foreground-faint', 'bg-muted-foreground-faint'],
+  ['muted-foreground-ghost', 'bg-muted-foreground-ghost'],
+  ['tint-red', 'bg-tint-red'],
+  ['tint-red-foreground', 'bg-tint-red-foreground'],
+  ['tint-orange', 'bg-tint-orange'],
+  ['tint-orange-foreground', 'bg-tint-orange-foreground'],
+  ['tint-yellow', 'bg-tint-yellow'],
+  ['tint-yellow-foreground', 'bg-tint-yellow-foreground'],
+  ['tint-green', 'bg-tint-green'],
+  ['tint-green-foreground', 'bg-tint-green-foreground'],
+  ['tint-cyan', 'bg-tint-cyan'],
+  ['tint-cyan-foreground', 'bg-tint-cyan-foreground'],
+  ['tint-blue', 'bg-tint-blue'],
+  ['tint-blue-foreground', 'bg-tint-blue-foreground'],
+  ['tint-magenta', 'bg-tint-magenta'],
+  ['tint-magenta-foreground', 'bg-tint-magenta-foreground'],
 ] as const
 
 const TokenSwatches = () => (
-  <main
-    style={{
-      backgroundColor: 'var(--background)',
-      color: 'var(--foreground)',
-      fontFamily: 'var(--font-sans, sans-serif)',
-      minHeight: '100vh',
-      padding: 32,
-    }}
-  >
-    <h1 style={{ fontSize: 24, margin: '0 0 8px' }}>Design tokens</h1>
-    <p style={{ margin: '0 0 24px' }}>
+  <main className="min-h-screen bg-background p-8 font-sans text-foreground">
+    <h1 className="mb-2 text-2xl leading-normal">Design tokens</h1>
+    <p className="mb-6">
       Light and dark palettes, type scale, and radius values.
     </p>
 
     <section aria-label="Color tokens">
-      <h2 style={{ fontSize: 18, margin: '0 0 12px' }}>Colors</h2>
-      <div
-        style={{
-          display: 'grid',
-          gap: 12,
-          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-        }}
-      >
-        {colorTokens.map((token) => (
-          <div
-            key={token}
-            style={{
-              backgroundColor: 'var(--card)',
-              border: '1px solid var(--border)',
-              padding: 8,
-            }}
-          >
+      <h2 className="mb-3 text-lg leading-normal">Colors</h2>
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3">
+        {colorTokens.map(([token, swatchClassName]) => (
+          <div key={token} className="border border-border bg-card p-2">
             <div
               aria-label={`--${token} swatch`}
-              style={{
-                backgroundColor: `var(--${token})`,
-                border: '1px solid var(--border-strong)',
-                height: 44,
-              }}
+              className={`h-11 border border-border-strong ${swatchClassName}`}
             />
-            <code style={{ display: 'block', fontSize: 12, marginTop: 8 }}>
-              --{token}
-            </code>
+            <code className="mt-2 block text-xs leading-normal">--{token}</code>
           </div>
         ))}
       </div>
     </section>
 
-    <section aria-label="Type and radius tokens" style={{ marginTop: 32 }}>
-      <h2 style={{ fontSize: 18, margin: '0 0 12px' }}>Type and radius</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-        <div
-          style={{
-            backgroundColor: 'var(--card)',
-            border: '1px solid var(--border)',
-            fontFamily: 'var(--font-sans, sans-serif)',
-            padding: 12,
-          }}
-        >
+    <section aria-label="Type and radius tokens" className="mt-8">
+      <h2 className="mb-3 text-lg leading-normal">Type and radius</h2>
+      <div className="flex flex-wrap gap-3">
+        <div className="border border-border bg-card p-3 font-sans">
           --font-sans · Sample text
         </div>
-        <div
-          style={{
-            backgroundColor: 'var(--card)',
-            border: '1px solid var(--border)',
-            fontFamily: 'var(--font-mono, monospace)',
-            padding: 12,
-          }}
-        >
+        <div className="border border-border bg-card p-3 font-mono">
           --font-mono · 012345
         </div>
-        <div
-          style={{
-            backgroundColor: 'var(--card)',
-            border: '1px solid var(--border)',
-            fontFamily: 'var(--font-code, monospace)',
-            padding: 12,
-          }}
-        >
+        <div className="border border-border bg-card p-3 font-code">
           --font-code · `sample()`
         </div>
-        <div
-          style={{
-            backgroundColor: 'var(--card)',
-            border: '1px solid var(--border)',
-            fontSize: 'var(--text-2xs, 0.625rem)',
-            lineHeight: 'var(--text-2xs--line-height, 0.875rem)',
-            padding: 12,
-          }}
-        >
+        <div className="border border-border bg-card p-3 text-2xs">
           --text-2xs · Small text
         </div>
-        <div
-          style={{
-            alignItems: 'center',
-            backgroundColor: 'var(--primary)',
-            borderRadius: 'var(--radius)',
-            color: 'var(--primary-foreground)',
-            display: 'flex',
-            height: 44,
-            justifyContent: 'center',
-            padding: '0 16px',
-          }}
-        >
+        <div className="flex h-11 items-center justify-center rounded-(--radius) bg-primary px-4 text-primary-foreground">
           --radius
         </div>
-        <div
-          style={{
-            alignItems: 'center',
-            backgroundColor: 'var(--accent)',
-            borderRadius: 'var(--keycap-radius)',
-            color: 'var(--accent-foreground)',
-            display: 'flex',
-            height: 44,
-            justifyContent: 'center',
-            padding: '0 16px',
-          }}
-        >
+        <div className="flex h-11 items-center justify-center rounded-(--keycap-radius) bg-accent px-4 text-accent-foreground">
           --keycap-radius
         </div>
       </div>
