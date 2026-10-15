@@ -121,6 +121,42 @@ describe('handleCommandPaletteKeyDown', () => {
     })
   })
 
+  it('allows native navigation without result actions when result navigation is disabled', () => {
+    const calls: string[] = []
+    const event = makeKeyboardEvent('Tab')
+
+    handleCommandPaletteKeyDown(event.event, {
+      items: makeItems(calls),
+      selectedIndex: 0,
+      onSelectedIndexChange: () => calls.push('index-change'),
+      onOpenChange: () => calls.push('open-change'),
+      enableResultNavigation: false,
+    })
+
+    expect(getOutcome(event, calls)).toEqual({
+      calls: [],
+      prevented: false,
+    })
+  })
+
+  it('closes the palette on Escape when result navigation is disabled', () => {
+    const calls: string[] = []
+    const event = makeKeyboardEvent('Escape')
+
+    handleCommandPaletteKeyDown(event.event, {
+      items: makeItems(calls),
+      selectedIndex: 0,
+      onSelectedIndexChange: () => calls.push('index-change'),
+      onOpenChange: (open) => calls.push(`open:${String(open)}`),
+      enableResultNavigation: false,
+    })
+
+    expect(getOutcome(event, calls)).toEqual({
+      calls: ['open:false'],
+      prevented: true,
+    })
+  })
+
   it('closes the palette with Escape', () => {
     const calls: string[] = []
     const event = makeKeyboardEvent('Escape')

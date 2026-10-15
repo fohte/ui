@@ -66,6 +66,7 @@ export interface CommandPaletteProps {
   inputAdornment?: ReactNode
   mobileToolbar?: ReactNode
   mobileToolbarLabel?: string
+  /** Replaces grouped results, the listbox and result messages. */
   body?: ReactNode
   footer?: ReactNode
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void
@@ -217,6 +218,7 @@ export function CommandPalette({
                 selectedIndex,
                 onSelectedIndexChange: setSelectedIndex,
                 onOpenChange,
+                enableResultNavigation: body === undefined,
                 ...(onKeyDown === undefined ? {} : { onKeyDown }),
               })
               if (event.key === 'Escape') event.stopPropagation()
@@ -302,16 +304,20 @@ export function CommandPalette({
 
         {footer === undefined ? (
           <div className="hidden min-h-9 flex-wrap items-center gap-1.5 border-t border-border px-4 py-2 font-mono text-2xs text-muted-foreground-ghost md:flex">
-            <KeyHint>↑↓</KeyHint>
-            <span>navigate</span>
-            {items[selectedIndex]?.selectOnTab != null && (
+            {body === undefined && (
               <>
-                <KeyHint>Tab</KeyHint>
-                <span>filter / autocomplete</span>
+                <KeyHint>↑↓</KeyHint>
+                <span>navigate</span>
+                {items[selectedIndex]?.selectOnTab != null && (
+                  <>
+                    <KeyHint>Tab</KeyHint>
+                    <span>filter / autocomplete</span>
+                  </>
+                )}
+                <KeyHint>Enter</KeyHint>
+                <span>open</span>
               </>
             )}
-            <KeyHint>Enter</KeyHint>
-            <span>open</span>
             <KeyHint>Esc</KeyHint>
             <span>close</span>
           </div>

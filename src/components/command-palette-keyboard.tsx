@@ -17,6 +17,7 @@ interface CommandPaletteKeyboardOptions<
   selectedIndex: number
   onSelectedIndexChange: (index: number) => void
   onOpenChange: (open: boolean) => void
+  enableResultNavigation?: boolean
   onKeyDown?: (event: TEvent) => void
 }
 
@@ -37,6 +38,7 @@ export function handleCommandPaletteKeyDown<
     selectedIndex,
     onSelectedIndexChange,
     onOpenChange,
+    enableResultNavigation = true,
     onKeyDown,
   }: CommandPaletteKeyboardOptions<TEvent>,
 ) {
@@ -44,6 +46,7 @@ export function handleCommandPaletteKeyDown<
 
   onKeyDown?.(event)
   if (event.defaultPrevented) return
+  if (!enableResultNavigation && event.key !== 'Escape') return
 
   switch (event.key) {
     case 'ArrowDown':

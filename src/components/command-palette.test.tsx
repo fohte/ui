@@ -31,18 +31,17 @@ function getBodyReplacementOutcome() {
   const body = document.querySelector<HTMLElement>(
     '[data-testid="custom-palette-body"]',
   )
-  const text = document.body.textContent
+  const dialog = document.querySelector<HTMLElement>('[role="dialog"]')
 
   return {
     bodyParentRole: body?.parentElement?.getAttribute('role') ?? null,
-    bodyText: body?.textContent ?? null,
-    listboxCount: document.querySelectorAll('[role="listbox"]').length,
-    defaultContent: [
-      'Example group',
-      'Example result',
-      'No matching results',
-      'Type a query',
-    ].filter((value) => text.includes(value)),
+    dialogChildren: Array.from(dialog?.children ?? []).map(
+      (child) => child.textContent,
+    ),
+    listboxNames: Array.from(
+      document.querySelectorAll('[role="listbox"]'),
+      (listbox) => listbox.getAttribute('aria-label'),
+    ),
   }
 }
 
@@ -66,6 +65,13 @@ function getToolbarGroupOutcome() {
     role: toolbar?.getAttribute('role') ?? null,
     label: toolbar?.getAttribute('aria-label') ?? null,
   }
+}
+
+function getHiddenResultKeyboardOutcome(
+  selectCalls: string[],
+  focusedControl: string | null,
+) {
+  return { selectCalls, focusedControl }
 }
 
 afterEach(() => {
@@ -226,9 +232,45 @@ it('replaces the result region with the provided body', () => {
 
   expect(getBodyReplacementOutcome()).toEqual({
     bodyParentRole: 'dialog',
-    bodyText: 'Help content',
-    listboxCount: 0,
-    defaultContent: [],
+    dialogChildren: ['›Esc', 'Help content', 'Escclose'],
+    listboxNames: [],
+  })
+})
+
+it('does not select hidden results and keeps Tab navigation available in body mode', async () => {
+  const selectCalls: string[] = []
+  renderPalette({
+    onOpenChange: () => {},
+    groups: [
+      {
+        id: 'hidden-results',
+        title: 'Hidden results',
+        items: [
+          {
+            key: 'hidden-result',
+            select: () => selectCalls.push('selected'),
+            render: () => <div>Hidden result</div>,
+          },
+        ],
+      },
+    ],
+    body: (
+      <div data-testid="custom-palette-body">
+        <button type="button" aria-label="Help control" />
+      </div>
+    ),
+  })
+
+  page.getByRole('textbox').element().focus()
+  await userEvent.keyboard('{Enter}')
+  await userEvent.tab()
+  await userEvent.tab()
+  const focusedControl =
+    document.activeElement?.getAttribute('aria-label') ?? null
+
+  expect(getHiddenResultKeyboardOutcome(selectCalls, focusedControl)).toEqual({
+    selectCalls: [],
+    focusedControl: 'Help control',
   })
 })
 
@@ -256,5 +298,17 @@ it('labels the mobile toolbar wrapper as a group', () => {
   expect(getToolbarGroupOutcome()).toEqual({
     role: 'group',
     label: 'Search mode filters',
+  })
+})
+
+it('uses the default accessible label for the mobile toolbar', () => {
+  renderPalette({
+    onOpenChange: () => {},
+    mobileToolbar: <button type="button">All</button>,
+  })
+
+  expect(getToolbarGroupOutcome()).toEqual({
+    role: 'group',
+    label: 'Search mode',
   })
 })
