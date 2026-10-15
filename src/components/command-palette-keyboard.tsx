@@ -1,0 +1,70 @@
+export interface CommandPaletteSelection {
+  select: () => void
+  selectOnTab?: () => void
+}
+
+export interface CommandPaletteKeyboardEvent {
+  key: string
+  nativeEvent: Pick<globalThis.KeyboardEvent, 'isComposing'>
+  readonly defaultPrevented: boolean
+  preventDefault: () => void
+}
+
+interface CommandPaletteKeyboardOptions<
+  TEvent extends CommandPaletteKeyboardEvent,
+> {
+  items: readonly CommandPaletteSelection[]
+  selectedIndex: number
+  onSelectedIndexChange: (index: number) => void
+  onOpenChange: (open: boolean) => void
+  onKeyDown?: (event: TEvent) => void
+}
+
+export function handleCommandPaletteKeyDown<
+  TEvent extends CommandPaletteKeyboardEvent,
+>(
+  event: TEvent,
+  {
+    items,
+    selectedIndex,
+    onSelectedIndexChange,
+    onOpenChange,
+    onKeyDown,
+  }: CommandPaletteKeyboardOptions<TEvent>,
+) {
+  if (event.nativeEvent.isComposing) return
+
+  onKeyDown?.(event)
+  if (event.defaultPrevented) return
+
+  switch (event.key) {
+    case 'ArrowDown':
+      event.preventDefault()
+      if (items.length > 0) {
+        onSelectedIndexChange(
+          selectedIndex < items.length - 1 ? selectedIndex + 1 : 0,
+        )
+      }
+      break
+    case 'ArrowUp':
+      event.preventDefault()
+      if (items.length > 0) {
+        onSelectedIndexChange(
+          selectedIndex > 0 ? selectedIndex - 1 : items.length - 1,
+        )
+      }
+      break
+    case 'Enter':
+      event.preventDefault()
+      items[selectedIndex]?.select()
+      break
+    case 'Tab':
+      event.preventDefault()
+      items[selectedIndex]?.selectOnTab?.()
+      break
+    case 'Escape':
+      event.preventDefault()
+      onOpenChange(false)
+      break
+  }
+}
