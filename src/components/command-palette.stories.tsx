@@ -124,8 +124,9 @@ export const WithInputAdornment: Story = {
 }
 
 export const WithMobileToolbar: Story = {
-  name: 'the mobile palette shows mode filters below the input',
+  name: 'the palette keeps a query while mobile mode filters are available',
   args: {
+    value: 'pages',
     mobileToolbar: (
       <div className="flex gap-0.5">
         <Chip as="button" size="md" tone="strong" aria-pressed="true">
