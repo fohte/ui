@@ -127,7 +127,7 @@ export const WithMobileToolbar: Story = {
   name: 'the mobile palette shows mode filters below the input',
   args: {
     mobileToolbar: (
-      <div className="flex gap-0.5" role="group" aria-label="Search mode">
+      <div className="flex gap-0.5">
         <Chip as="button" size="md" tone="strong" aria-pressed="true">
           all
         </Chip>
@@ -137,6 +137,17 @@ export const WithMobileToolbar: Story = {
         <Chip as="button" size="md" tone="muted" aria-pressed="false">
           commands
         </Chip>
+      </div>
+    ),
+  },
+}
+
+export const WithBody: Story = {
+  name: 'the palette shows a help panel in place of results',
+  args: {
+    body: (
+      <div className="flex-1 overflow-y-auto p-4 font-mono text-xs text-muted-foreground">
+        Search syntax help
       </div>
     ),
   },

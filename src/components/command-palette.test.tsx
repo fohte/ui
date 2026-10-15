@@ -27,6 +27,47 @@ function getToolbarKeyboardOutcome(
   return { focusedControl, calls }
 }
 
+function getBodyReplacementOutcome() {
+  const body = document.querySelector<HTMLElement>(
+    '[data-testid="custom-palette-body"]',
+  )
+  const text = document.body.textContent
+
+  return {
+    bodyParentRole: body?.parentElement?.getAttribute('role') ?? null,
+    bodyText: body?.textContent ?? null,
+    listboxCount: document.querySelectorAll('[role="listbox"]').length,
+    defaultContent: [
+      'Example group',
+      'Example result',
+      'No matching results',
+      'Type a query',
+    ].filter((value) => text.includes(value)),
+  }
+}
+
+function getStableSlotOutcome() {
+  const getSlot = (name: string) =>
+    document
+      .querySelector(`[data-slot="${name}"]`)
+      ?.getAttribute('data-slot') ?? null
+
+  return {
+    overlay: getSlot('command-palette-overlay'),
+    prefix: getSlot('command-palette-prefix'),
+    loading: getSlot('command-palette-loading'),
+  }
+}
+
+function getToolbarGroupOutcome() {
+  const toolbar = document.querySelector<HTMLElement>('[role="group"]')
+
+  return {
+    role: toolbar?.getAttribute('role') ?? null,
+    label: toolbar?.getAttribute('aria-label') ?? null,
+  }
+}
+
 afterEach(() => {
   act(() => {
     roots.forEach((root) => {
@@ -45,11 +86,23 @@ function renderPalette({
   groups = [],
   inputAdornment,
   mobileToolbar,
+  mobileToolbarLabel,
+  body,
+  emptyMessage,
+  initialMessage,
+  loading,
+  prefix,
 }: {
   onOpenChange: (open: boolean) => void
   groups?: CommandPaletteGroup[]
   inputAdornment?: ReactNode
   mobileToolbar?: ReactNode
+  mobileToolbarLabel?: string
+  body?: ReactNode
+  emptyMessage?: ReactNode
+  initialMessage?: ReactNode
+  loading?: boolean
+  prefix?: ReactNode
 }) {
   const mountNode = document.createElement('div')
   document.body.appendChild(mountNode)
@@ -67,6 +120,12 @@ function renderPalette({
         groups={groups}
         inputAdornment={inputAdornment}
         mobileToolbar={mobileToolbar}
+        {...(mobileToolbarLabel === undefined ? {} : { mobileToolbarLabel })}
+        body={body}
+        emptyMessage={emptyMessage}
+        initialMessage={initialMessage}
+        {...(loading === undefined ? {} : { loading })}
+        prefix={prefix}
       />,
     )
   })
@@ -77,7 +136,7 @@ it('closes when the backdrop is clicked', () => {
   renderPalette({ onOpenChange: (open) => openChanges.push(open) })
 
   const backdrop = document.querySelector<HTMLElement>(
-    '[data-slot="command-palette-backdrop"]',
+    '[data-slot="command-palette-overlay"]',
   )
   backdrop?.click()
 
@@ -93,7 +152,7 @@ it('stays open when the dialog content is clicked', () => {
     currentRole: string | null
   }[] = []
   const backdrop = document.querySelector<HTMLElement>(
-    '[data-slot="command-palette-backdrop"]',
+    '[data-slot="command-palette-overlay"]',
   )
   backdrop?.addEventListener('click', (event) => {
     const getRole = (target: EventTarget | null) =>
@@ -139,5 +198,63 @@ it('keeps Tab navigation and Enter activation available to mobile toolbar contro
   expect(getToolbarKeyboardOutcome(focusedControl, calls)).toEqual({
     focusedControl: 'Second mode',
     calls: ['second'],
+  })
+})
+
+it('replaces the result region with the provided body', () => {
+  renderPalette({
+    onOpenChange: () => {},
+    groups: [
+      {
+        id: 'example',
+        title: 'Example group',
+        items: [
+          {
+            key: 'example-result',
+            select: () => {},
+            render: () => (
+              <div data-testid="example-result">Example result</div>
+            ),
+          },
+        ],
+      },
+    ],
+    body: <div data-testid="custom-palette-body">Help content</div>,
+    emptyMessage: 'No matching results',
+    initialMessage: 'Type a query',
+  })
+
+  expect(getBodyReplacementOutcome()).toEqual({
+    bodyParentRole: 'dialog',
+    bodyText: 'Help content',
+    listboxCount: 0,
+    defaultContent: [],
+  })
+})
+
+it('exposes stable slots for the overlay, prefix, and loading indicator', () => {
+  renderPalette({
+    onOpenChange: () => {},
+    loading: true,
+    prefix: '#',
+  })
+
+  expect(getStableSlotOutcome()).toEqual({
+    overlay: 'command-palette-overlay',
+    prefix: 'command-palette-prefix',
+    loading: 'command-palette-loading',
+  })
+})
+
+it('labels the mobile toolbar wrapper as a group', () => {
+  renderPalette({
+    onOpenChange: () => {},
+    mobileToolbarLabel: 'Search mode filters',
+    mobileToolbar: <button type="button">All</button>,
+  })
+
+  expect(getToolbarGroupOutcome()).toEqual({
+    role: 'group',
+    label: 'Search mode filters',
   })
 })

@@ -65,6 +65,8 @@ export interface CommandPaletteProps {
   prefix?: ReactNode
   inputAdornment?: ReactNode
   mobileToolbar?: ReactNode
+  mobileToolbarLabel?: string
+  body?: ReactNode
   footer?: ReactNode
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void
   inputRef?: Ref<HTMLInputElement>
@@ -86,6 +88,8 @@ export function CommandPalette({
   prefix = '›',
   inputAdornment,
   mobileToolbar,
+  mobileToolbarLabel = 'Search mode',
+  body,
   footer,
   onKeyDown,
   inputRef,
@@ -150,7 +154,7 @@ export function CommandPalette({
 
   const palette = (
     <div
-      data-slot="command-palette-backdrop"
+      data-slot="command-palette-overlay"
       className={cn(
         'fixed inset-x-0 z-50 flex items-start justify-center bg-black/50 md:inset-0 md:pt-[15vh] md:h-auto',
         insets === null
@@ -187,6 +191,7 @@ export function CommandPalette({
         <div className="flex h-12 shrink-0 items-center gap-2 border-b border-border px-3 md:gap-3 md:px-4">
           {prefix != null && (
             <span
+              data-slot="command-palette-prefix"
               className="shrink-0 font-mono text-sm font-bold text-primary"
               aria-hidden="true"
             >
@@ -219,6 +224,7 @@ export function CommandPalette({
           />
           {loading && (
             <Loader2
+              data-slot="command-palette-loading"
               className="h-4 w-4 shrink-0 animate-spin text-muted-foreground"
               aria-label="Loading"
             />
@@ -240,49 +246,59 @@ export function CommandPalette({
         </div>
 
         {mobileToolbar != null && (
-          <div className="flex shrink-0 gap-0.5 overflow-x-auto border-b border-border px-3 py-1.5 md:hidden">
+          <div
+            className="flex shrink-0 gap-0.5 overflow-x-auto border-b border-border px-3 py-1.5 md:hidden"
+            role="group"
+            aria-label={mobileToolbarLabel}
+          >
             {mobileToolbar}
           </div>
         )}
 
-        <div ref={listRef} className="flex-1 overflow-y-auto py-2">
-          <List role="listbox" aria-label="Search results">
-            {emptyMessage != null && (
-              <div className="px-4 py-8 text-center font-mono text-xs text-muted-foreground-faint">
-                {emptyMessage}
-              </div>
-            )}
-
-            {groups.map((group, groupIndex) => (
-              <Fragment key={group.id}>
-                {groupIndex > 0 && <div className="mx-4 my-1 h-px bg-border" />}
-                <div className="px-4 py-1 font-mono text-2xs tracking-widest text-muted-foreground-faint">
-                  {group.title}
+        {body === undefined ? (
+          <div ref={listRef} className="flex-1 overflow-y-auto py-2">
+            <List role="listbox" aria-label="Search results">
+              {emptyMessage != null && (
+                <div className="px-4 py-8 text-center font-mono text-xs text-muted-foreground-faint">
+                  {emptyMessage}
                 </div>
-                {group.sections == null
-                  ? renderItems(group.items)
-                  : group.sections.map((section) => (
-                      <Fragment key={section.id}>
-                        {section.items.length > 0 && (
-                          <>
-                            <div className="px-4 pt-2 pb-1 font-mono text-2xs text-muted-foreground-faint">
-                              {section.title}
-                            </div>
-                            {renderItems(section.items)}
-                          </>
-                        )}
-                      </Fragment>
-                    ))}
-              </Fragment>
-            ))}
+              )}
 
-            {initialMessage != null && (
-              <div className="px-4 py-8 text-center font-mono text-xs text-muted-foreground-faint">
-                {initialMessage}
-              </div>
-            )}
-          </List>
-        </div>
+              {groups.map((group, groupIndex) => (
+                <Fragment key={group.id}>
+                  {groupIndex > 0 && (
+                    <div className="mx-4 my-1 h-px bg-border" />
+                  )}
+                  <div className="px-4 py-1 font-mono text-2xs tracking-widest text-muted-foreground-faint">
+                    {group.title}
+                  </div>
+                  {group.sections == null
+                    ? renderItems(group.items)
+                    : group.sections.map((section) => (
+                        <Fragment key={section.id}>
+                          {section.items.length > 0 && (
+                            <>
+                              <div className="px-4 pt-2 pb-1 font-mono text-2xs text-muted-foreground-faint">
+                                {section.title}
+                              </div>
+                              {renderItems(section.items)}
+                            </>
+                          )}
+                        </Fragment>
+                      ))}
+                </Fragment>
+              ))}
+
+              {initialMessage != null && (
+                <div className="px-4 py-8 text-center font-mono text-xs text-muted-foreground-faint">
+                  {initialMessage}
+                </div>
+              )}
+            </List>
+          </div>
+        ) : (
+          body
+        )}
 
         {footer === undefined ? (
           <div className="hidden min-h-9 flex-wrap items-center gap-1.5 border-t border-border px-4 py-2 font-mono text-2xs text-muted-foreground-ghost md:flex">
