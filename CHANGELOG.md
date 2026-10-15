@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/fohte/ui/compare/v0.1.3...v0.1.4) (2026-10-15)
+
+
+### Features
+
+* **command-palette:** share the search palette ([#47](https://github.com/fohte/ui/issues/47)) ([aead5e0](https://github.com/fohte/ui/commit/aead5e0e5e1067f258e91ed9fd186306830c13ba))
+
 ## [0.1.3](https://github.com/fohte/ui/compare/v0.1.2...v0.1.3) (2026-09-27)
 
 
