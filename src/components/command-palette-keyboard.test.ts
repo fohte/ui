@@ -6,12 +6,12 @@ import {
   handleCommandPaletteKeyDown,
 } from '#components/command-palette-keyboard'
 
-function makeKeyboardEvent(key: string, isComposing = false) {
+function makeKeyboardEvent(key: string, isComposing = false, keyCode = 0) {
   let defaultPrevented = false
   return {
     event: {
       key,
-      nativeEvent: { isComposing },
+      nativeEvent: { isComposing, keyCode },
       preventDefault() {
         defaultPrevented = true
       },
@@ -159,9 +159,48 @@ describe('handleCommandPaletteKeyDown', () => {
     })
   })
 
+  it('lets the consumer prevent the built-in Enter action', () => {
+    const calls: string[] = []
+    const event = makeKeyboardEvent('Enter')
+
+    handleCommandPaletteKeyDown(event.event, {
+      items: makeItems(calls),
+      selectedIndex: 0,
+      onSelectedIndexChange: () => calls.push('index-change'),
+      onOpenChange: () => calls.push('open-change'),
+      onKeyDown: (keyboardEvent) => {
+        calls.push('consumer-keydown')
+        keyboardEvent.preventDefault()
+      },
+    })
+
+    expect(getOutcome(event, calls)).toEqual({
+      calls: ['consumer-keydown'],
+      prevented: true,
+    })
+  })
+
   it('ignores keys during IME composition', () => {
     const calls: string[] = []
     const event = makeKeyboardEvent('Enter', true)
+
+    handleCommandPaletteKeyDown(event.event, {
+      items: makeItems(calls),
+      selectedIndex: 0,
+      onSelectedIndexChange: () => calls.push('index-change'),
+      onOpenChange: () => calls.push('open-change'),
+      onKeyDown: () => calls.push('consumer-keydown'),
+    })
+
+    expect(getOutcome(event, calls)).toEqual({
+      calls: [],
+      prevented: false,
+    })
+  })
+
+  it('ignores the Enter key used to confirm Safari IME composition', () => {
+    const calls: string[] = []
+    const event = makeKeyboardEvent('Enter', false, 229)
 
     handleCommandPaletteKeyDown(event.event, {
       items: makeItems(calls),

@@ -5,7 +5,7 @@ export interface CommandPaletteSelection {
 
 export interface CommandPaletteKeyboardEvent {
   key: string
-  nativeEvent: Pick<globalThis.KeyboardEvent, 'isComposing'>
+  nativeEvent: Pick<globalThis.KeyboardEvent, 'isComposing' | 'keyCode'>
   readonly defaultPrevented: boolean
   preventDefault: () => void
 }
@@ -20,6 +20,14 @@ interface CommandPaletteKeyboardOptions<
   onKeyDown?: (event: TEvent) => void
 }
 
+function isImeConfirmationKey(event: CommandPaletteKeyboardEvent) {
+  if (event.nativeEvent.isComposing) return true
+
+  // WebKit reports the Enter key that confirms an IME conversion as keyCode 229.
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- WebKit marks IME confirmation with this legacy key code.
+  return event.nativeEvent.keyCode === 229
+}
+
 export function handleCommandPaletteKeyDown<
   TEvent extends CommandPaletteKeyboardEvent,
 >(
@@ -32,7 +40,7 @@ export function handleCommandPaletteKeyDown<
     onKeyDown,
   }: CommandPaletteKeyboardOptions<TEvent>,
 ) {
-  if (event.nativeEvent.isComposing) return
+  if (isImeConfirmationKey(event)) return
 
   onKeyDown?.(event)
   if (event.defaultPrevented) return

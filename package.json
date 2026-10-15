@@ -56,6 +56,10 @@
       "types": "./src/components/*.tsx",
       "default": "./src/components/*.tsx"
     },
+    "#hooks/*": {
+      "types": "./src/hooks/*.ts",
+      "default": "./src/hooks/*.ts"
+    },
     "#*": {
       "types": [
         "./src/*.tsx",

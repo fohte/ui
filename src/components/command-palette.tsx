@@ -66,7 +66,7 @@ export interface CommandPaletteProps {
   inputAdornment?: ReactNode
   mobileToolbar?: ReactNode
   footer?: ReactNode
-  onKeyDown?: (event: KeyboardEvent<HTMLDivElement>) => void
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void
   inputRef?: Ref<HTMLInputElement>
   defaultSelectedIndex?: number
 }
@@ -105,6 +105,10 @@ export function CommandPalette({
       ),
     [groups],
   )
+  const itemIndexes = useMemo(
+    () => new Map(items.map((item, index) => [item, index] as const)),
+    [items],
+  )
   const itemKeys = JSON.stringify(items.map((item) => item.key))
 
   useEffect(() => {
@@ -137,10 +141,16 @@ export function CommandPalette({
       },
     })
 
-  let globalIndex = 0
+  const renderItems = (groupItems: CommandPaletteItem[]) =>
+    groupItems.map((item) => (
+      <Fragment key={item.key}>
+        {renderItem(item, itemIndexes.get(item) ?? 0)}
+      </Fragment>
+    ))
 
   const palette = (
     <div
+      data-slot="command-palette-backdrop"
       className={cn(
         'fixed inset-x-0 z-50 flex items-start justify-center bg-black/50 md:inset-0 md:pt-[15vh] md:h-auto',
         insets === null
@@ -159,13 +169,10 @@ export function CommandPalette({
             })
       }
       onKeyDown={(event) => {
-        handleCommandPaletteKeyDown(event, {
-          items,
-          selectedIndex,
-          onSelectedIndexChange: setSelectedIndex,
-          onOpenChange,
-          ...(onKeyDown === undefined ? {} : { onKeyDown }),
-        })
+        if (event.key === 'Escape' && !event.nativeEvent.isComposing) {
+          event.preventDefault()
+          onOpenChange(false)
+        }
       }}
       onClick={(event) => {
         if (event.target === event.currentTarget) onOpenChange(false)
@@ -199,6 +206,16 @@ export function CommandPalette({
             autoFocus
             className="w-auto min-w-0 flex-1"
             aria-label={inputLabel}
+            onKeyDown={(event) => {
+              handleCommandPaletteKeyDown(event, {
+                items,
+                selectedIndex,
+                onSelectedIndexChange: setSelectedIndex,
+                onOpenChange,
+                ...(onKeyDown === undefined ? {} : { onKeyDown }),
+              })
+              if (event.key === 'Escape') event.stopPropagation()
+            }}
           />
           {loading && (
             <Loader2
@@ -243,14 +260,7 @@ export function CommandPalette({
                   {group.title}
                 </div>
                 {group.sections == null
-                  ? group.items.map((item) => {
-                      const index = globalIndex++
-                      return (
-                        <Fragment key={item.key}>
-                          {renderItem(item, index)}
-                        </Fragment>
-                      )
-                    })
+                  ? renderItems(group.items)
                   : group.sections.map((section) => (
                       <Fragment key={section.id}>
                         {section.items.length > 0 && (
@@ -258,14 +268,7 @@ export function CommandPalette({
                             <div className="px-4 pt-2 pb-1 font-mono text-2xs text-muted-foreground-faint">
                               {section.title}
                             </div>
-                            {section.items.map((item) => {
-                              const index = globalIndex++
-                              return (
-                                <Fragment key={item.key}>
-                                  {renderItem(item, index)}
-                                </Fragment>
-                              )
-                            })}
+                            {renderItems(section.items)}
                           </>
                         )}
                       </Fragment>
@@ -285,8 +288,12 @@ export function CommandPalette({
           <div className="hidden min-h-9 flex-wrap items-center gap-1.5 border-t border-border px-4 py-2 font-mono text-2xs text-muted-foreground-ghost md:flex">
             <KeyHint>↑↓</KeyHint>
             <span>navigate</span>
-            <KeyHint>Tab</KeyHint>
-            <span>filter / autocomplete</span>
+            {items[selectedIndex]?.selectOnTab != null && (
+              <>
+                <KeyHint>Tab</KeyHint>
+                <span>filter / autocomplete</span>
+              </>
+            )}
             <KeyHint>Enter</KeyHint>
             <span>open</span>
             <KeyHint>Esc</KeyHint>
