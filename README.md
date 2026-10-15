@@ -26,6 +26,7 @@ Import components from their subpaths:
 ```tsx
 import { Button } from '@fohte/ui/button'
 import { Chip } from '@fohte/ui/chip'
+import { CommandPalette } from '@fohte/ui/command-palette'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
 import { Input } from '@fohte/ui/input'
 import { List, ListItem } from '@fohte/ui/list'
