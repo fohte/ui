@@ -27,6 +27,15 @@ export const WithoutIcon: Story = {
   name: 'a field trigger shows a value without an icon.',
 }
 
+export const MediumTypography: Story = {
+  name: 'a field trigger inherits text-sm typography from its parent.',
+  render: (args) => (
+    <div className="text-sm">
+      <FieldTrigger {...args} />
+    </div>
+  ),
+}
+
 export const LargeTypography: Story = {
   name: 'a field trigger inherits large typography from its parent.',
   render: (args) => (
