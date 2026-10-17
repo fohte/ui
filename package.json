@@ -12,6 +12,7 @@
   "exports": {
     "./tokens.css": "./tokens.css",
     "./button": "./src/components/button.tsx",
+    "./button-group": "./src/components/button-group.tsx",
     "./chip": "./src/components/chip.tsx",
     "./command-palette": "./src/components/command-palette.tsx",
     "./dialog": "./src/components/dialog.tsx",
@@ -29,6 +30,7 @@
     "src/padding.ts",
     "src/utils.ts",
     "src/components/button.tsx",
+    "src/components/button-group.tsx",
     "src/components/chip.tsx",
     "src/components/command-palette-keyboard.tsx",
     "src/components/command-palette.tsx",
