@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/fohte/ui/compare/v0.1.4...v0.1.5) (2026-10-17)
+
+
+### Features
+
+* **button-group:** publish ButtonGroup ([#49](https://github.com/fohte/ui/issues/49)) ([9ad3e53](https://github.com/fohte/ui/commit/9ad3e5381e340eacfac4076797d116fca53d37d0))
+* **field-trigger:** add click-to-edit trigger ([#51](https://github.com/fohte/ui/issues/51)) ([a229333](https://github.com/fohte/ui/commit/a2293330c151241e7dbc8a8ee12293a8f5ef6c9f))
+
 ## [0.1.4](https://github.com/fohte/ui/compare/v0.1.3...v0.1.4) (2026-10-15)
 
 
