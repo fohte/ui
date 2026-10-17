@@ -4,6 +4,9 @@ import { twMerge } from 'tailwind-merge'
 export const ghostFieldClassName =
   '-mx-1 border-x-0 border-t-0 border-b border-transparent bg-transparent px-1 hover:bg-accent/50 data-[hovered]:bg-accent/50 focus:border-b-border-strong aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 focus:aria-invalid:border-b-destructive dark:focus:aria-invalid:border-b-destructive/50'
 
+export const fieldTriggerBaseClassName =
+  "flex w-fit items-center justify-between gap-1.5 whitespace-nowrap transition-colors outline-none select-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

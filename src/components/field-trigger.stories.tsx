@@ -37,6 +37,11 @@ export const LargeTypography: Story = {
 }
 
 export const Disabled: Story = {
-  name: 'a disabled field trigger shows its disabled appearance.',
+  name: 'a disabled field trigger keeps a clear background while hovered.',
   args: { disabled: true },
+  render: (args) => (
+    <FieldTrigger {...args} data-hovered="">
+      Example value
+    </FieldTrigger>
+  ),
 }
