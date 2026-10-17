@@ -12,7 +12,7 @@ function FieldTrigger({ className, ...props }: FieldTriggerProps) {
       className={cn(
         fieldTriggerBaseClassName,
         ghostFieldClassName,
-        'text-left disabled:hover:bg-transparent disabled:data-[hovered]:bg-transparent [&_svg]:text-muted-foreground',
+        'min-h-8 py-2 text-left disabled:hover:bg-transparent disabled:data-[hovered]:bg-transparent [&_svg]:text-muted-foreground',
         className,
       )}
       {...props}

@@ -12,15 +12,15 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const WithChevron: Story = {
-  name: 'a field trigger shows a value with a chevron.',
-  args: {
-    children: (
-      <>
+  name: 'a compact field trigger shows a value with a chevron.',
+  render: (args) => (
+    <div className="text-xs font-mono">
+      <FieldTrigger {...args}>
         Example value
         <ChevronDownIcon />
-      </>
-    ),
-  },
+      </FieldTrigger>
+    </div>
+  ),
 }
 
 export const WithoutIcon: Story = {
