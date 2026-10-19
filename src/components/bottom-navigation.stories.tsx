@@ -11,40 +11,18 @@ import {
   SearchIcon,
   SettingsIcon,
 } from 'lucide-react'
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 
-import {
-  BottomNavigation,
-  type BottomNavigationLinkItem,
-} from '#components/bottom-navigation'
+import { BottomNavigation } from '#components/bottom-navigation'
+import { createBottomNavigationLink } from '#components/bottom-navigation.fixtures'
 import { inDarkMode } from '#storybook-utils'
 
-function createLink(
-  id: string,
-  label: string,
-  icon?: ReactNode,
-  selected = false,
-): BottomNavigationLinkItem {
-  return {
-    id,
-    type: 'link',
-    label,
-    icon,
-    selected,
-    renderLink: ({ children, ...props }) => (
-      <a href={`/${id}`} {...props}>
-        {children}
-      </a>
-    ),
-  }
-}
-
 const fiveDestinations = [
-  createLink('overview', 'Home', <HouseIcon />, true),
-  createLink('library', 'Read', <BookOpenIcon />),
-  createLink('calendar', 'Plan', <CalendarDaysIcon />),
-  createLink('timeline', 'Log', <ActivityIcon />),
-  createLink('preferences', 'Prefs', <SettingsIcon />),
+  createBottomNavigationLink('overview', 'Home', <HouseIcon />, true),
+  createBottomNavigationLink('library', 'Read', <BookOpenIcon />),
+  createBottomNavigationLink('calendar', 'Plan', <CalendarDaysIcon />),
+  createBottomNavigationLink('timeline', 'Log', <ActivityIcon />),
+  createBottomNavigationLink('preferences', 'Prefs', <SettingsIcon />),
 ]
 
 const fiveDestinationsWithAction = [
@@ -59,10 +37,10 @@ const fiveDestinationsWithAction = [
 ]
 
 const fourDestinationsWithTwoActions = [
-  createLink('overview', 'Home', <HouseIcon />, true),
-  createLink('library', 'Read', <BookOpenIcon />),
-  createLink('calendar', 'Plan', <CalendarDaysIcon />),
-  createLink('archive', 'Saved', <ArchiveIcon />),
+  createBottomNavigationLink('overview', 'Home', <HouseIcon />, true),
+  createBottomNavigationLink('library', 'Read', <BookOpenIcon />),
+  createBottomNavigationLink('calendar', 'Plan', <CalendarDaysIcon />),
+  createBottomNavigationLink('archive', 'Saved', <ArchiveIcon />),
   {
     id: 'filter',
     type: 'button' as const,
@@ -81,12 +59,41 @@ const fourDestinationsWithTwoActions = [
 ]
 
 const longLabels = [
-  createLink('weekly-plan', 'Weekly planning', <CalendarDaysIcon />, true),
-  createLink('reading-list', 'Personal reading list', <BookOpenIcon />),
-  createLink('timeline', 'Change history', <ActivityIcon />),
-  createLink('saved-items', 'Saved items', <ArchiveIcon />),
-  createLink('discover', 'Discover new topics', <CompassIcon />),
-  createLink('preferences', 'Display preferences', <SettingsIcon />),
+  createBottomNavigationLink(
+    'weekly-plan',
+    'Weekly planning',
+    <CalendarDaysIcon />,
+    true,
+  ),
+  createBottomNavigationLink(
+    'reading-list',
+    'Personal reading list',
+    <BookOpenIcon />,
+  ),
+  createBottomNavigationLink('timeline', 'Change history', <ActivityIcon />),
+  createBottomNavigationLink('saved-items', 'Saved items', <ArchiveIcon />),
+  createBottomNavigationLink(
+    'discover',
+    'Discover new topics',
+    <CompassIcon />,
+  ),
+  createBottomNavigationLink(
+    'preferences',
+    'Display preferences',
+    <SettingsIcon />,
+  ),
+]
+
+const disabledAction = [
+  ...fiveDestinations,
+  {
+    id: 'compose',
+    type: 'button' as const,
+    label: 'Edit',
+    icon: <FilePlus2Icon />,
+    onClick: () => undefined,
+    disabled: true,
+  },
 ]
 
 const meta = {
@@ -128,6 +135,12 @@ export const FiveDestinationsWithActionDark: Story = inDarkMode(
   FiveDestinationsWithAction,
   'five destinations and an action share the navigation in dark mode.',
 )
+
+export const DisabledAction: Story = {
+  name: 'the disabled action appears unavailable beside destinations.',
+  args: { items: disabledAction },
+  render: renderAtMobileWidth,
+}
 
 export const FourDestinationsWithTwoActions: Story = {
   name: 'four destinations and two actions share the navigation.',

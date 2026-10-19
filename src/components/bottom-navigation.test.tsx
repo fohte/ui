@@ -8,8 +8,8 @@ import { userEvent } from 'vitest/browser'
 import {
   BottomNavigation,
   type BottomNavigationItem,
-  type BottomNavigationLinkItem,
 } from '#components/bottom-navigation'
+import { createBottomNavigationLink } from '#components/bottom-navigation.fixtures'
 
 Reflect.set(globalThis, 'IS_REACT_ACT_ENVIRONMENT', true)
 
@@ -28,22 +28,6 @@ afterEach(() => {
   roots.length = 0
   mountNodes.length = 0
 })
-
-function createLink(id: string, label: string, selected = false) {
-  const item: BottomNavigationLinkItem = {
-    id,
-    type: 'link',
-    label,
-    selected,
-    renderLink: ({ children, ...props }) => (
-      <a href={`/${id}`} {...props}>
-        {children}
-      </a>
-    ),
-  }
-
-  return item
-}
 
 function renderBottomNavigation(
   items: ReadonlyArray<BottomNavigationItem>,
@@ -130,6 +114,19 @@ function getActionOutput(calls: string[]) {
   }
 }
 
+function getDisabledActionOutput(calls: string[]) {
+  const button = document.querySelector<HTMLButtonElement>(
+    '[data-slot="bottom-navigation-item"]',
+  )
+  button?.click()
+
+  return {
+    tagName: button?.tagName ?? null,
+    disabled: button?.disabled ?? false,
+    calls,
+  }
+}
+
 function getFocusedItemOutput() {
   const navigation = document.querySelector<HTMLElement>(
     '[data-slot="bottom-navigation"]',
@@ -159,11 +156,11 @@ function getFocusedItemOutput() {
 
 it('renders router links and action buttons with their native selected states', () => {
   renderBottomNavigation([
-    createLink('overview', 'Overview', true),
-    createLink('library', 'Library'),
-    createLink('calendar', 'Calendar'),
-    createLink('timeline', 'Log'),
-    createLink('options', 'Options'),
+    createBottomNavigationLink('overview', 'Overview', undefined, true),
+    createBottomNavigationLink('library', 'Library'),
+    createBottomNavigationLink('calendar', 'Calendar'),
+    createBottomNavigationLink('timeline', 'Log'),
+    createBottomNavigationLink('options', 'Options'),
     {
       id: 'compose',
       type: 'button',
@@ -214,13 +211,32 @@ it('activates a selected action as a native toggle button', () => {
   })
 })
 
+it('keeps disabled actions inactive', () => {
+  const calls: string[] = []
+  renderBottomNavigation([
+    {
+      id: 'compose',
+      type: 'button',
+      label: 'Compose',
+      disabled: true,
+      onClick: () => calls.push('compose'),
+    },
+  ])
+
+  expect(getDisabledActionOutput(calls)).toEqual({
+    tagName: 'BUTTON',
+    disabled: true,
+    calls: [],
+  })
+})
+
 it('keeps one row, 52 pixel touch targets, and single-line labels', () => {
   renderBottomNavigation([
-    createLink('overview', 'Overview'),
-    createLink('library', 'Library'),
-    createLink('calendar', 'Calendar'),
-    createLink('timeline', 'Log'),
-    createLink('settings', 'Settings'),
+    createBottomNavigationLink('overview', 'Overview'),
+    createBottomNavigationLink('library', 'Library'),
+    createBottomNavigationLink('calendar', 'Calendar'),
+    createBottomNavigationLink('timeline', 'Log'),
+    createBottomNavigationLink('settings', 'Settings'),
   ])
 
   expect(getTouchTargetOutput()).toEqual({
@@ -236,11 +252,11 @@ it('keeps one row, 52 pixel touch targets, and single-line labels', () => {
 it('scrolls the focused item into view during keyboard navigation', async () => {
   renderBottomNavigation(
     [
-      createLink('overview', 'Overview'),
-      createLink('library', 'Library'),
-      createLink('calendar', 'Calendar'),
-      createLink('timeline', 'Log'),
-      createLink('options', 'Options'),
+      createBottomNavigationLink('overview', 'Overview'),
+      createBottomNavigationLink('library', 'Library'),
+      createBottomNavigationLink('calendar', 'Calendar'),
+      createBottomNavigationLink('timeline', 'Log'),
+      createBottomNavigationLink('options', 'Options'),
       {
         id: 'compose',
         type: 'button',

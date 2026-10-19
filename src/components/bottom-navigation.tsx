@@ -66,6 +66,9 @@ function getItemClassName(item: BottomNavigationItem) {
     item.selected === true
       ? 'bg-accent text-accent-foreground'
       : 'text-muted-foreground hover:text-foreground',
+    item.type === 'button' && item.disabled === true
+      ? 'cursor-not-allowed opacity-50'
+      : undefined,
     item.className,
   )
 }
