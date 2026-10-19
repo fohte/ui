@@ -24,6 +24,7 @@ The package does not follow `prefers-color-scheme`; the consuming application co
 Import components from their subpaths:
 
 ```tsx
+import { BottomNavigation } from '@fohte/ui/bottom-navigation'
 import { Button } from '@fohte/ui/button'
 import { ButtonGroup } from '@fohte/ui/button-group'
 import { Chip } from '@fohte/ui/chip'
@@ -45,6 +46,39 @@ import { SegmentedControl } from '@fohte/ui/segmented-control'
 import { Tabs, TabsList, TabsPanel, TabsTab } from '@fohte/ui/tabs'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 ```
+
+`BottomNavigation` accepts links and action buttons in one horizontal row. Each item has an `id` and visible `label`, and can also include an `icon`, `selected` state, and `className`. Link items use `renderLink` to wrap the content with the consuming application's router component. The render slot receives the link content, styling class, and current-page state. Replace `openComposer` in the example with the application's action handler.
+
+```tsx
+import {
+  BottomNavigation,
+  type BottomNavigationItem,
+} from '@fohte/ui/bottom-navigation'
+
+const items = [
+  {
+    id: 'overview',
+    type: 'link' as const,
+    label: 'Overview',
+    selected: true,
+    renderLink: ({ children, ...props }) => (
+      <a href="/overview" {...props}>
+        {children}
+      </a>
+    ),
+  },
+  {
+    id: 'compose',
+    type: 'button' as const,
+    label: 'Compose',
+    onClick: openComposer,
+  },
+] satisfies ReadonlyArray<BottomNavigationItem>
+
+<BottomNavigation aria-label="Primary navigation" items={items} />
+```
+
+The component provides semantic token colors, single-line labels, and horizontal scrolling when the items do not fit. Pass `className` to style or position the navigation for the application layout, and set an item's `className` to customize its appearance. `fixed` or `sticky` placement and space for the bar remain the consuming application's responsibility.
 
 React, React DOM, `@base-ui/react`, and `lucide-react` are peer dependencies. Make sure they are available in the consuming application. Their supported version ranges are declared in `package.json`.
 

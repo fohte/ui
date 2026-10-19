@@ -1,7 +1,9 @@
+import tailwindcss from '@tailwindcss/vite'
 import { playwright } from '@vitest/browser-playwright'
 import { defaultExclude, defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  plugins: [tailwindcss()],
   test: {
     // Knip needs an explicit pattern to discover test entry files.
     include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)'],
