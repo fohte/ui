@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/fohte/ui/compare/v0.1.5...v0.1.6) (2026-10-19)
+
+
+### Features
+
+* **bottom-navigation:** add a router-neutral API ([#52](https://github.com/fohte/ui/issues/52)) ([f4c6189](https://github.com/fohte/ui/commit/f4c6189e7e7bd02f8d25ce613fc2a4bbe6e9cf99))
+
 ## [0.1.5](https://github.com/fohte/ui/compare/v0.1.4...v0.1.5) (2026-10-17)
 
 
