@@ -14,6 +14,7 @@
     "./bottom-navigation": "./src/components/bottom-navigation.tsx",
     "./button": "./src/components/button.tsx",
     "./button-group": "./src/components/button-group.tsx",
+    "./checkbox": "./src/components/checkbox.tsx",
     "./chip": "./src/components/chip.tsx",
     "./command-palette": "./src/components/command-palette.tsx",
     "./dialog": "./src/components/dialog.tsx",
@@ -25,6 +26,7 @@
     "./select": "./src/components/select.tsx",
     "./segmented-control": "./src/components/segmented-control.tsx",
     "./tabs": "./src/components/tabs.tsx",
+    "./textarea": "./src/components/textarea.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
   "files": [
@@ -34,6 +36,7 @@
     "src/components/bottom-navigation.tsx",
     "src/components/button.tsx",
     "src/components/button-group.tsx",
+    "src/components/checkbox.tsx",
     "src/components/chip.tsx",
     "src/components/command-palette-keyboard.tsx",
     "src/components/command-palette.tsx",
@@ -47,6 +50,7 @@
     "src/components/select.tsx",
     "src/components/segmented-control.tsx",
     "src/components/tabs.tsx",
+    "src/components/textarea.tsx",
     "src/components/tooltip.tsx"
   ],
   "publishConfig": {
