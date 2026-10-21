@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/fohte/ui/compare/v0.1.6...v0.1.7) (2026-10-21)
+
+
+### Features
+
+* **components:** add Checkbox and Textarea ([#54](https://github.com/fohte/ui/issues/54)) ([5fd4e1f](https://github.com/fohte/ui/commit/5fd4e1f2445716afd8948878a731ee3e5cc84998))
+
 ## [0.1.6](https://github.com/fohte/ui/compare/v0.1.5...v0.1.6) (2026-10-19)
 
 
