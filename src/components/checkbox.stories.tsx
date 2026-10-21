@@ -20,6 +20,23 @@ export const Checked: Story = {
   args: { defaultChecked: true },
 }
 
+export const MultipleSelected: Story = {
+  name: 'two selected checkboxes show a multi-select choice.',
+  args: { defaultChecked: true },
+  render: (args) => (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Checkbox {...args} aria-label="Example option A" />
+        <span>Example option A</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <Checkbox {...args} aria-label="Example option B" />
+        <span>Example option B</span>
+      </div>
+    </div>
+  ),
+}
+
 export const Indeterminate: Story = {
   name: 'an indeterminate checkbox displays a horizontal mark.',
   args: { indeterminate: true },
@@ -48,6 +65,11 @@ export const UncheckedDark: Story = inDarkMode(
 export const CheckedDark: Story = inDarkMode(
   Checked,
   'a checked checkbox uses the neutral foreground color in dark mode.',
+)
+
+export const MultipleSelectedDark: Story = inDarkMode(
+  MultipleSelected,
+  'two selected checkboxes show a multi-select choice in dark mode.',
 )
 
 export const IndeterminateDark: Story = inDarkMode(
