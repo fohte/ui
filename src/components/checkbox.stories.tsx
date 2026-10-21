@@ -45,6 +45,9 @@ export const Indeterminate: Story = {
 export const Focused: Story = {
   name: 'a focused checkbox shows the common focus ring.',
   args: { autoFocus: true },
+  render: (args) => (
+    <Checkbox {...args} nativeButton render={<button type="button" />} />
+  ),
 }
 
 export const Disabled: Story = {
