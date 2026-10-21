@@ -27,6 +27,7 @@ Import components from their subpaths:
 import { BottomNavigation } from '@fohte/ui/bottom-navigation'
 import { Button } from '@fohte/ui/button'
 import { ButtonGroup } from '@fohte/ui/button-group'
+import { Checkbox } from '@fohte/ui/checkbox'
 import { Chip } from '@fohte/ui/chip'
 import { CommandPalette } from '@fohte/ui/command-palette'
 import { Dialog, DialogContent, DialogTitle } from '@fohte/ui/dialog'
@@ -44,6 +45,7 @@ import {
 } from '@fohte/ui/select'
 import { SegmentedControl } from '@fohte/ui/segmented-control'
 import { Tabs, TabsList, TabsPanel, TabsTab } from '@fohte/ui/tabs'
+import { Textarea } from '@fohte/ui/textarea'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@fohte/ui/tooltip'
 ```
 
