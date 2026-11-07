@@ -45,6 +45,7 @@
     "src/components/field-trigger.tsx",
     "src/hooks/use-visual-viewport-insets.ts",
     "src/components/input.tsx",
+    "src/components/kbd.tsx",
     "src/components/list.tsx",
     "src/components/panel.tsx",
     "src/components/popover.tsx",
