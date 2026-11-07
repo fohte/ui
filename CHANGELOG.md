@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/fohte/ui/compare/v0.1.7...v0.1.8) (2026-11-07)
+
+
+### Features
+
+* **components:** add a solid Button and Kbd ([#58](https://github.com/fohte/ui/issues/58)) ([c2e8f43](https://github.com/fohte/ui/commit/c2e8f43b5087dd20501afc1d4c8839ca19c9c6b2))
+
 ## [0.1.7](https://github.com/fohte/ui/compare/v0.1.6...v0.1.7) (2026-10-21)
 
 
