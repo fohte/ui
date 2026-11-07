@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 
 import { Button } from '#components/button'
+import { Kbd } from '#components/kbd'
 import { inDarkMode } from '#storybook-utils'
 
 const meta = {
@@ -29,6 +30,7 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Button>Default</Button>
+      <Button variant="solid">Solid</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
@@ -66,6 +68,16 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   name: 'the button displays its disabled appearance.',
   args: { children: 'Disabled', disabled: true },
+}
+
+export const SolidWithKbd: Story = {
+  name: 'a solid button shows its shortcut key in a keycap matching its fill.',
+  args: { variant: 'solid' },
+  render: (args) => (
+    <Button {...args}>
+      Accept <Kbd>Tab</Kbd>
+    </Button>
+  ),
 }
 
 export const PlainText: Story = {
@@ -188,4 +200,9 @@ export const PlainSizesDark: Story = inDarkMode(
 export const PlainColorsDark: Story = inDarkMode(
   PlainColors,
   'plain actions use muted text by default and destructive text on hover in dark mode.',
+)
+
+export const SolidWithKbdDark: Story = inDarkMode(
+  SolidWithKbd,
+  'a solid button shows its shortcut key in a keycap matching its fill in dark mode.',
 )

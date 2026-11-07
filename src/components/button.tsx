@@ -15,6 +15,8 @@ const buttonVariants = cva(
       variant: {
         default:
           'border-border-strong bg-surface-strong text-foreground hover:border-foreground',
+        solid:
+          'border-foreground bg-foreground font-bold text-background hover:bg-foreground/85 **:data-[slot=kbd]:border-transparent **:data-[slot=kbd]:bg-background/10 **:data-[slot=kbd]:text-background',
         outline:
           'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground',
         secondary:
